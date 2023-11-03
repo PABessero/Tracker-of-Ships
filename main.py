@@ -59,7 +59,6 @@ class Save:
         print(test)
 
 
-
 class Window:
     background = "black"
     font = "Arial"
