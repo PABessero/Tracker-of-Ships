@@ -43,20 +43,19 @@ class Save:
                     print("Has double magic")
                     print(line[-1])
 
-    def get_info2(self):
+    def make_data(self, data):
+        self.doubleDefense = data['isDoubleDefenseAcquired']
+        self.doubleMagic = data['isDoubleMagicAcquired']
+
+        print('Double Defense: ' + str(self.doubleDefense))
+        print('Double Magic: ' + str(self.doubleMagic))
+
+    def get_info(self):
         lines = []
         with open(self.path, "r") as saveFile:
-            # curLine = saveFile.readline()
             data = saveFile.read()
-            lines = data.strip().split("\n")
-            print(data)
-            test = json.loads(data)
-            # while curLine != "":
-            #     self.switch(curLine.strip())
-        print(len(lines))
-        for line in lines:
-            self.switch(line.strip(','))
-        print(test)
+        data = json.loads(data)
+        self.make_data(data['sections']['base']['data'])
 
 
 class Window:
@@ -82,7 +81,7 @@ class Window:
                 print("File doesnt match the right extension")
 
         def get_info():
-            self.save.get_info2()
+            self.save.get_info()
 
         self.window.title(title)
         self.window.geometry(geometry)
