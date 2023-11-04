@@ -2,6 +2,7 @@ import tkinter
 from tkinter import *
 from tkinter import filedialog
 from tkinter import ttk
+from tkinter.messagebox import *
 
 from data import Save
 
@@ -28,6 +29,10 @@ class Window:
             else:
                 print("File doesnt match the right extension")
 
+        def alertbox():
+            if askyesno('Warning', 'Are you sure you want to do this?'):
+                quit(self)
+
         def get_info():
             self.save.get_info()
 
@@ -39,8 +44,12 @@ class Window:
 
         menubar = Menu(self.window)
         filemenu = Menu(menubar, tearoff=0)
-        filemenu.add_command(label="open", command=get_path)
-        filemenu.add_command(label="get info", command=get_info)
+        openicon = PhotoImage(file="./folder.png")
+
+        filemenu.add_command(label="Open ", image=openicon, compound="left", command=get_path)
+        filemenu.add_command(label="Get info", command=get_info)
+        filemenu.add_separator()
+        filemenu.add_command(label="Exit", command=alertbox)
         menubar.add_cascade(label="File", menu=filemenu)
 
         # frame = Frame(self.window, background=self.background)
