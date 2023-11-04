@@ -37,6 +37,12 @@ class Window:
         self.window.iconbitmap("assets/enhancedDefence.ico")
         self.window.config(background=self.background)
 
+        menubar = Menu(self.window)
+        filemenu = Menu(menubar, tearoff=0)
+        filemenu.add_command(label="open", command=get_path)
+        filemenu.add_command(label="get info", command=get_info)
+        menubar.add_cascade(label="File", menu=filemenu)
+
         # frame = Frame(self.window, background=self.background)
         # frame.pack(expand=YES)
 
@@ -47,12 +53,12 @@ class Window:
         # entry_path = tkinter.Entry(self.window)
         # self.canvas.create_window(200, 140, window=entry_path)
 
-        path_button = ttk.Button(self.window, text='Set save path', command=get_path)
-        path_button.grid(column=1, row=0, sticky=tkinter.E, padx=5, pady=5)
-        # self.canvas.create_window(200, 180, window=path_button)
-
-        info_button = ttk.Button(self.window, text='Get Info', command=get_info)
-        info_button.grid(column=1, row=1, sticky=tkinter.E, padx=5, pady=5)
+        # path_button = ttk.Button(self.window, text='Set save path', command=get_path)
+        # path_button.grid(column=1, row=0, sticky=tkinter.E, padx=5, pady=5)
+        # # self.canvas.create_window(200, 180, window=path_button)
+        #
+        # info_button = ttk.Button(self.window, text='Get Info', command=get_info)
+        # info_button.grid(column=1, row=1, sticky=tkinter.E, padx=5, pady=5)
 
         panel = ttk.Panedwindow(self.window, height=300, width=600)
         panel.grid(column=0, row=20, rowspan=50, sticky=tkinter.S)
@@ -60,3 +66,5 @@ class Window:
 
         self.window.columnconfigure(0, weight=4)
         self.window.columnconfigure(1, weight=1)
+
+        self.window.config(menu=menubar)
