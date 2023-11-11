@@ -1,4 +1,5 @@
 import json
+import tkinter
 
 
 class Dungeon:
@@ -41,7 +42,12 @@ class Dungeon:
 class Position:
     column: int = 0
     row: int = 0
-    sticky: str = 'W'
+    sticky = tkinter.W
+
+    def __init__(self, column: int = 0, row: int = 0, sticky = tkinter.W):
+        self.column = column
+        self.row = row
+        self.sticky = sticky
 
 
 class Equipment:
@@ -76,6 +82,7 @@ class Save:
 
         self.parse_dungeons(data['inventory']['dungeonItems'], data['inventory']['dungeonKeys'])
         self.parse_equipment(data['inventory']['equipment'])
+        self.parse_inventory(data['inventory']['items'])
 
         print('Double Defense: ' + str(self.doubleDefense))
         print('Double Magic: ' + str(self.doubleMagic))
@@ -110,21 +117,34 @@ class Save:
         self.create_or_update_dungeon('Barinade Lair', dungeons[19])
 
     def parse_equipment(self, equipment: int):
-        self.create_or_update_equipment('Kokiri Sword', bin(equipment >> 0)[-1])
-        self.create_or_update_equipment('Master Sword', bin(equipment >> 1)[-1])
-        self.create_or_update_equipment('Giant Knife & Biggoron', bin(equipment >> 2)[-1])
-        self.create_or_update_equipment('Goron Sword (Broken)', bin(equipment >> 3)[-1])
-        self.create_or_update_equipment('Deku Shield', bin(equipment >> 4)[-1])
-        self.create_or_update_equipment('Hylian Shield', bin(equipment >> 5)[-1])
-        self.create_or_update_equipment('Mirror Shield', bin(equipment >> 6)[-1])
-        self.create_or_update_equipment('Kokiri Tunic', bin(equipment >> 7)[-1])
-        self.create_or_update_equipment('Goron Tunic', bin(equipment >> 8)[-1])
-        self.create_or_update_equipment('Zora Tunic', bin(equipment >> 9)[-1])
-        self.create_or_update_equipment('Kokiri Boots', bin(equipment >> 10)[-1])
-        self.create_or_update_equipment('Iron Boots', bin(equipment >> 11)[-1])
-        self.create_or_update_equipment('Hover Boots', bin(equipment >> 12)[-1])
+        self.create_or_update_equipment('Kokiri Sword', bin(equipment >> 0)[-1],
+                                        r'assets/items/equipKokiriSword.png', Position(0, 4, tkinter.W))
+        self.create_or_update_equipment('Master Sword', bin(equipment >> 1)[-1],
+                                        r'assets/items/equipMasterSword.png', Position(1, 4, tkinter.W))
+        self.create_or_update_equipment('Giant Knife & Biggoron', bin(equipment >> 2)[-1],
+                                        r'assets/items/equipBiggoronsSword.png', Position(2, 4, tkinter.W))
+        self.create_or_update_equipment('Goron Sword (Broken)', bin(equipment >> 3)[-1],
+                                        r'assets/items/equipBrokenKnife.png', Position(3, 4, tkinter.W))
+        self.create_or_update_equipment('Deku Shield', bin(equipment >> 4)[-1],
+                                        r'assets/items/equipDekuShield.png', Position(4, 4, tkinter.W))
+        self.create_or_update_equipment('Hylian Shield', bin(equipment >> 5)[-1],
+                                        r'assets/items/equipHylianShield.png', Position(5, 4, tkinter.W))
+        self.create_or_update_equipment('Mirror Shield', bin(equipment >> 6)[-1],
+                                        r'assets/items/equipMirrorShield.png', Position(0, 5, tkinter.W))
+        self.create_or_update_equipment('Kokiri Tunic', bin(equipment >> 7)[-1],
+                                        r'assets/items/equipKokiriTunic.png', Position(1, 5, tkinter.W))
+        self.create_or_update_equipment('Goron Tunic', bin(equipment >> 8)[-1],
+                                        r'assets/items/equipGoronTunic.png', Position(2, 5, tkinter.W))
+        self.create_or_update_equipment('Zora Tunic', bin(equipment >> 9)[-1],
+                                        r'assets/items/equipZoraTunic.png', Position(3, 5, tkinter.W))
+        self.create_or_update_equipment('Kokiri Boots', bin(equipment >> 10)[-1],
+                                        r'assets/items/equipKokiriBoots.png', Position(4, 5, tkinter.W))
+        self.create_or_update_equipment('Iron Boots', bin(equipment >> 11)[-1],
+                                        r'assets/items/equipIronBoots.png', Position(5, 5, tkinter.W))
+        self.create_or_update_equipment('Hover Boots', bin(equipment >> 12)[-1],
+                                        r'assets/items/equipHoverBoots.png', Position(0, 6, tkinter.W))
 
-    def parse_inventory(self, equipment: int):
+    def parse_inventory(self, items: [int]):
         pass
 
     def create_or_update_dungeon(self, dungeon_name: str, binary: int, dungeon_keys: int = 0, image_path: str = ''):
@@ -154,6 +174,9 @@ class Save:
             self.equipments[index].obtained = False
         else:
             self.equipments[index].obtained = True
+
+    def create_or_update_item(self):
+        pass
 
     def get_info(self):
         with open(self.path, "r") as saveFile:

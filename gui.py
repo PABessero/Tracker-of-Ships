@@ -19,6 +19,9 @@ class Window:
 
     canvas: tkinter.Canvas
 
+    def make_equipment_images(self):
+        pass
+
     def __init__(self, title: str, geometry: str):
         def get_path():
             file_path = tkinter.filedialog.askopenfilename()
