@@ -61,10 +61,14 @@ class Equipment:
 
     def set_obtained(self, obtained):
         self.obtained = obtained
-        if self.obtained:
-            self.image = ImageTk.PhotoImage(Image.open(self.image_path))
-        else:
-            self.image = ImageTk.PhotoImage(Image.open(self.image_path).convert('LA'))
+        self.image = ImageTk.PhotoImage(Image.open(self.image_path))
+        if not self.obtained:
+            colored = Image.open(self.image_path)
+            colored.load()
+            alpha = colored.split()[-1]
+            img_gray = colored.convert("L").convert("RGB")
+            img_gray.putalpha(alpha)
+            self.image = ImageTk.PhotoImage(img_gray)
 
         # if hasattr(self, 'label'):
         #     self.label.
