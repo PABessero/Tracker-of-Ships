@@ -38,10 +38,17 @@ class Dungeon:
         return self.name == other
 
 
+class Position:
+    column: int = 0
+    row: int = 0
+    sticky: str = 'W'
+
+
 class Equipment:
     name: str = ''
     image: str = ''
     obtained: bool = False
+    position: Position
 
     def __init__(self, name: str, image: str = ''):
         self.name = name
@@ -117,6 +124,9 @@ class Save:
         self.create_or_update_equipment('Iron Boots', bin(equipment >> 11)[-1])
         self.create_or_update_equipment('Hover Boots', bin(equipment >> 12)[-1])
 
+    def parse_inventory(self, equipment: int):
+        pass
+
     def create_or_update_dungeon(self, dungeon_name: str, binary: int, dungeon_keys: int = 0, image_path: str = ''):
         if dungeon_name in self.dungeons:
             pass
@@ -128,13 +138,17 @@ class Save:
         self.dungeons[index].parse_bin(binary)
         self.dungeons[index].small_keys = dungeon_keys
 
-    def create_or_update_equipment(self, equipment_name, obtained: str = "0"):
+    def create_or_update_equipment(self, equipment_name, obtained: str = "0",
+                                   image_path: str = "", position: Position = Position()):
         if equipment_name in self.equipments:
             pass
         else:
             self.equipments.append(Equipment(equipment_name))
 
         index = self.equipments.index(equipment_name)
+
+        self.equipments[index].position = position
+        self.equipments[index].image = image_path
 
         if obtained == "0":
             self.equipments[index].obtained = False

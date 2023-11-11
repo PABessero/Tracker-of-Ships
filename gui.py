@@ -43,119 +43,119 @@ class Window:
 
         #variable image
         #Image Menu Bar
-        openicon = PhotoImage(file="assets/other/folder.png")
-        openicon.image = openicon
+        self.openicon = PhotoImage(file="assets/other/folder.png")
+        self.openicon.image = self.openicon
 
-        infoicon = PhotoImage(file="assets/other/info.png")
-        infoicon.image = infoicon
+        self.infoicon = PhotoImage(file="assets/other/info.png")
+        self.infoicon.image = self.infoicon
 
-        exiticon = PhotoImage(file="assets/other/logout.png")
-        exiticon.image = exiticon
+        self.exiticon = PhotoImage(file="assets/other/logout.png")
+        self.exiticon.image = self.exiticon
 
         #Image Items
         #Row 0
-        deku_stick = PhotoImage(file=r"assets/items/dekuStick.png")
-        deku_stick.image = deku_stick
+        self.deku_stick = PhotoImage(file=r"assets/items/dekuStick.png")
+        self.deku_stick.image = self.deku_stick
 
-        deku_nut = PhotoImage(file=r"assets/items/dekuNut.png")
-        deku_nut.image = deku_nut
+        self.deku_nut = PhotoImage(file=r"assets/items/dekuNut.png")
+        self.deku_nut.image = self.deku_nut
 
-        bombs = PhotoImage(file=r"assets/items/bombs.png")
-        bombs.image = bombs
+        self.bombs = PhotoImage(file=r"assets/items/bombs.png")
+        self.bombs.image = self.bombs
 
-        bow = PhotoImage(file=r"assets/items/bow.png")
-        bow.image = bow
+        self.bow = PhotoImage(file=r"assets/items/bow.png")
+        self.bow.image = self.bow
 
-        fireArrow = PhotoImage(file=r"assets/items/fireArrow.png")
-        fireArrow.image = fireArrow
+        self.fireArrow = PhotoImage(file=r"assets/items/fireArrow.png")
+        self.fireArrow.image = self.fireArrow
 
-        dinsFire = PhotoImage(file=r"assets/items/dinsFire.png")
-        dinsFire.image = dinsFire
+        self.dinsFire = PhotoImage(file=r"assets/items/dinsFire.png")
+        self.dinsFire.image = self.dinsFire
 
-        worldMap = PhotoImage(file=r"assets/maps/worldMap.png")
-        worldMap.image = worldMap
+        self.worldMap = PhotoImage(file=r"assets/maps/worldMap.png")
+        self.worldMap.image = self.worldMap
 
         #Row 1
-        fairy_Slingshot = PhotoImage(file=r"assets/items/fairySlingshot.png")
-        fairy_Slingshot.image = fairy_Slingshot
+        self.fairy_Slingshot = PhotoImage(file=r"assets/items/fairySlingshot.png")
+        self.fairy_Slingshot.image = self.fairy_Slingshot
 
-        fairy_Ocarina = PhotoImage(file=r"assets/items/fairyOcarina.png")
-        fairy_Ocarina.image = fairy_Ocarina
+        self.fairy_Ocarina = PhotoImage(file=r"assets/items/fairyOcarina.png")
+        self.fairy_Ocarina.image = self.fairy_Ocarina
 
-        ocarinaOfTime = PhotoImage(file=r"assets/items/ocarinaOfTime.png")
-        ocarinaOfTime.image = ocarinaOfTime
+        self.ocarinaOfTime = PhotoImage(file=r"assets/items/ocarinaOfTime.png")
+        self.ocarinaOfTime.image = self.ocarinaOfTime
 
-        bombchus = PhotoImage(file=r"assets/items/bombchus.png")
-        bombchus.image = bombchus
+        self.bombchus = PhotoImage(file=r"assets/items/bombchus.png")
+        self.bombchus.image = self.bombchus
 
-        hookshot = PhotoImage(file=r"assets/items/hookshot.png")
-        hookshot.image = hookshot
+        self.hookshot = PhotoImage(file=r"assets/items/hookshot.png")
+        self.hookshot.image = self.hookshot
 
-        longshot = PhotoImage(file=r"assets/items/longshot.png")
-        longshot.image = longshot
+        self.longshot = PhotoImage(file=r"assets/items/longshot.png")
+        self.longshot.image = self.longshot
 
-        iceArrow = PhotoImage(file=r"assets/items/iceArrows.png")
-        iceArrow.image = iceArrow
+        self.iceArrow = PhotoImage(file=r"assets/items/iceArrows.png")
+        self.iceArrow.image = self.iceArrow
 
-        faroresWind = PhotoImage(file=r"assets/items/faroresWind.png")
-        faroresWind.image = faroresWind
+        self.faroresWind = PhotoImage(file=r"assets/items/faroresWind.png")
+        self.faroresWind.image = self.faroresWind
 
         #row 2
 
-        boomerang = PhotoImage(file=r"assets/items/boomerang.png")
-        boomerang.image = boomerang
+        self.boomerang = PhotoImage(file=r"assets/items/boomerang.png")
+        self.boomerang.image = self.boomerang
 
-        lensOfTruth = PhotoImage(file=r"assets/items/lensOfTruth.png")
-        lensOfTruth.image = lensOfTruth
+        self.lensOfTruth = PhotoImage(file=r"assets/items/lensOfTruth.png")
+        self.lensOfTruth.image = self.lensOfTruth
 
-        magicBeans = PhotoImage(file=r"assets/items/magicBeans.png")
-        magicBeans.image = magicBeans
+        self.magicBeans = PhotoImage(file=r"assets/items/magicBeans.png")
+        self.magicBeans.image = self.magicBeans
 
-        megatonHammer = PhotoImage(file=r"assets/items/megatonHammer.png")
-        megatonHammer.image = megatonHammer
+        self.megatonHammer = PhotoImage(file=r"assets/items/megatonHammer.png")
+        self.megatonHammer.image = self.megatonHammer
 
-        lightArrows = PhotoImage(file=r"assets/items/lightArrows.png")
-        lightArrows.image = lightArrows
+        self.lightArrows = PhotoImage(file=r"assets/items/lightArrows.png")
+        self.lightArrows.image = self.lightArrows
 
-        naryusLove = PhotoImage(file=r"assets/items/naryusLove.png")
-        naryusLove.image = naryusLove
+        self.naryusLove = PhotoImage(file=r"assets/items/naryusLove.png")
+        self.naryusLove.image = self.naryusLove
 
         #menubar
         menubar = Menu(self.window)
         filemenu = Menu(menubar, tearoff=0)
 
-        filemenu.add_command(label="Open", image=openicon, compound="left", command=get_path, accelerator="Ctrl+O")
-        filemenu.add_command(label="Get info", image=infoicon, compound="left", command=get_info)
+        filemenu.add_command(label="Open", image=self.openicon, compound="left", command=get_path, accelerator="Ctrl+O")
+        filemenu.add_command(label="Get info", image=self.infoicon, compound="left", command=get_info)
         filemenu.add_separator()
-        filemenu.add_command(label="Exit", image=exiticon, compound="left", command=alertbox)
+        filemenu.add_command(label="Exit", image=self.exiticon, compound="left", command=alertbox)
         menubar.add_cascade(label="File", menu=filemenu)
 
         #Placement Item Track
-        Label(self.window, image=worldMap, bg=self.bg).grid(row=0, rowspan=3, column=6, sticky=W + E + N + S)
+        Label(self.window, image=self.worldMap, bg=self.bg).grid(row=0, rowspan=3, column=6, sticky=W + E + N + S)
 
         #Row = 0
-        Label(self.window, image=deku_stick, bg=self.bg).grid(row=0, column=0,sticky=W)
-        Label(self.window, image=deku_nut, bg=self.bg).grid(row=0, column=1, sticky=W)
-        Label(self.window, image=bombs, bg=self.bg).grid(row=0, column=2, sticky=W)
-        Label(self.window, image=bow, bg=self.bg).grid(row=0, column=3, sticky=W)
-        Label(self.window, image=fireArrow, bg=self.bg).grid(row=0, column=4, sticky=W)
-        Label(self.window, image=dinsFire, bg=self.bg).grid(row=0, column=5, sticky=W)
+        Label(self.window, image=self.deku_stick, bg=self.bg).grid(row=0, column=0,sticky=W)
+        Label(self.window, image=self.deku_nut, bg=self.bg).grid(row=0, column=1, sticky=W)
+        Label(self.window, image=self.bombs, bg=self.bg).grid(row=0, column=2, sticky=W)
+        Label(self.window, image=self.bow, bg=self.bg).grid(row=0, column=3, sticky=W)
+        Label(self.window, image=self.fireArrow, bg=self.bg).grid(row=0, column=4, sticky=W)
+        Label(self.window, image=self.dinsFire, bg=self.bg).grid(row=0, column=5, sticky=W)
 
         #Row = 1
-        Label(self.window, image=fairy_Slingshot, bg=self.bg).grid(row=1, column=0, sticky=W)
-        Label(self.window, image=fairy_Ocarina, bg=self.bg).grid(row=1, column=1, sticky=W)
-        Label(self.window, image=bombchus, bg=self.bg).grid(row=1, column=2, sticky=W)
-        Label(self.window, image=hookshot, bg=self.bg).grid(row=1, column=3, sticky=W)
-        Label(self.window, image=iceArrow, bg=self.bg).grid(row=1, column=4, sticky=W)
-        Label(self.window, image=faroresWind, bg=self.bg).grid(row=1, column=5, sticky=W)
+        Label(self.window, image=self.fairy_Slingshot, bg=self.bg).grid(row=1, column=0, sticky=W)
+        Label(self.window, image=self.fairy_Ocarina, bg=self.bg).grid(row=1, column=1, sticky=W)
+        Label(self.window, image=self.bombchus, bg=self.bg).grid(row=1, column=2, sticky=W)
+        Label(self.window, image=self.hookshot, bg=self.bg).grid(row=1, column=3, sticky=W)
+        Label(self.window, image=self.iceArrow, bg=self.bg).grid(row=1, column=4, sticky=W)
+        Label(self.window, image=self.faroresWind, bg=self.bg).grid(row=1, column=5, sticky=W)
 
         # Row = 2
-        Label(self.window, image=boomerang, bg=self.bg).grid(row=2, column=0, sticky=W)
-        Label(self.window, image=lensOfTruth, bg=self.bg).grid(row=2, column=1, sticky=W)
-        Label(self.window, image=magicBeans, bg=self.bg).grid(row=2, column=2, sticky=W)
-        Label(self.window, image=megatonHammer, bg=self.bg).grid(row=2, column=3, sticky=W)
-        Label(self.window, image=lightArrows, bg=self.bg).grid(row=2, column=4, sticky=W)
-        Label(self.window, image=naryusLove, bg=self.bg).grid(row=2, column=5, sticky=W)
+        Label(self.window, image=self.boomerang, bg=self.bg).grid(row=2, column=0, sticky=W)
+        Label(self.window, image=self.lensOfTruth, bg=self.bg).grid(row=2, column=1, sticky=W)
+        Label(self.window, image=self.magicBeans, bg=self.bg).grid(row=2, column=2, sticky=W)
+        Label(self.window, image=self.megatonHammer, bg=self.bg).grid(row=2, column=3, sticky=W)
+        Label(self.window, image=self.lightArrows, bg=self.bg).grid(row=2, column=4, sticky=W)
+        Label(self.window, image=self.naryusLove, bg=self.bg).grid(row=2, column=5, sticky=W)
 
         # self.window.columnconfigure(0, weight=4)
         # self.window.columnconfigure(1, weight=1)
