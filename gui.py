@@ -131,6 +131,77 @@ class Window:
         self.naryusLove = PhotoImage(file=r"assets/items/naryusLove.png")
         self.naryusLove.image = self.naryusLove
 
+        # row 3
+
+        self.bottleEmpty = PhotoImage(file=r"assets/items/bottleEmpty.png")
+        self.bottleEmpty.image = self.bottleEmpty
+
+        self.bottleLetter = PhotoImage(file=r"assets/items/bottleLetter.png")
+        self.bottleLetter.image = self.bottleLetter
+
+        self.bottleRedPotion = PhotoImage(file=r"assets/items/bottleRedPotion.png")
+        self.bottleRedPotion.image = self.bottleRedPotion
+
+        self.bottleGreenPotion = PhotoImage(file=r"assets/items/bottleGreenPotion.png")
+        self.bottleGreenPotion.image = self.bottleGreenPotion
+
+        self.bottleBluePotion = PhotoImage(file=r"assets/items/bottleBluePotion.png")
+        self.bottleBluePotion.image = self.bottleBluePotion
+
+        self.bottleFish = PhotoImage(file=r"assets/items/bottleFish.png")
+        self.bottleFish = self.bottleFish
+
+        self.bottleBug = PhotoImage(file=r"assets/items/bottleBug.png")
+        self.bottleBug = self.bottleBug
+
+        self.bottleLonLonMilk = PhotoImage(file=r"assets/items/bottleLonLonMilk.png")
+        self.bottleLonLonMilk = self.bottleLonLonMilk
+
+        self.bottleLonLonMilkHalf = PhotoImage(file=r"assets/items/bottleLonLonMilkHalf.png")
+        self.bottleLonLonMilkHalf = self.bottleLonLonMilkHalf
+
+        self.bottleBlueFire = PhotoImage(file=r"assets/items/bottleBlueFire.png")
+        self.bottleBlueFire = self.bottleBlueFire
+
+        self.bottleBigPoe = PhotoImage(file=r"assets/items/bottleBigPoe.png")
+        self.bottleBigPoe = self.bottleBigPoe
+
+        self.bottlePoe = PhotoImage(file=r"assets/items/bottlePoe.png")
+        self.bottlePoe = self.bottlePoe
+
+        self.adultPocketEgg = PhotoImage(file=r"assets/items/adultPocketEgg.png")
+        self.adultPocketEgg = self.adultPocketEgg
+
+        self.adultPocketCucco = PhotoImage(file=r"assets/items/adultPocketCucco.png")
+        self.adultPocketCucco = self.adultPocketCucco
+
+        self.adultCojiro = PhotoImage(file=r"assets/items/adultCojiro.png")
+        self.adultCojiro = self.adultCojiro
+
+        self.adultOddMushroom = PhotoImage(file=r"assets/items/adultOddMushroom.png")
+        self.adultOddMushroom = self.adultOddMushroom
+
+        self.adultOddPotion = PhotoImage(file=r"assets/items/adultOddPotion.png")
+        self.adultOddPotion = self.adultOddPotion
+
+        self.adultPoachersSaw = PhotoImage(file=r"assets/items/adultPoachersSaw.png")
+        self.adultPoachersSaw = self.adultPoachersSaw
+
+        self.adultPocketEgg = PhotoImage(file=r"assets/items/adultPocketEgg.png")
+        self.adultPocketEgg = self.adultPocketEgg
+
+        self.adultPocketEgg = PhotoImage(file=r"assets/items/adultPocketEgg.png")
+        self.adultPocketEgg = self.adultPocketEgg
+
+        self.adultPocketEgg = PhotoImage(file=r"assets/items/adultPocketEgg.png")
+        self.adultPocketEgg = self.adultPocketEgg
+
+        self.adultPocketEgg = PhotoImage(file=r"assets/items/adultPocketEgg.png")
+        self.adultPocketEgg = self.adultPocketEgg
+
+        self.adultPocketEgg = PhotoImage(file=r"assets/items/adultPocketEgg.png")
+        self.adultPocketEgg = self.adultPocketEgg
+
         # menubar
         menubar = Menu(self.window)
         filemenu = Menu(menubar, tearoff=0)
@@ -142,7 +213,7 @@ class Window:
         menubar.add_cascade(label="File", menu=filemenu)
 
         # Placement Item Track
-        Label(self.window, image=self.worldMap, bg=self.bg).grid(row=0, rowspan=3, column=6, sticky=W + E + N + S)
+        Label(self.window, image=self.worldMap, bg=self.bg).grid(row=0, rowspan=11, column=6, sticky=W + E + N + S)
 
         # Row = 0
         Label(self.window, image=self.deku_stick, bg=self.bg).grid(row=0, column=0, sticky=W)
@@ -167,6 +238,15 @@ class Window:
         Label(self.window, image=self.megatonHammer, bg=self.bg).grid(row=2, column=3, sticky=W)
         Label(self.window, image=self.lightArrows, bg=self.bg).grid(row=2, column=4, sticky=W)
         Label(self.window, image=self.naryusLove, bg=self.bg).grid(row=2, column=5, sticky=W)
+
+        # Row = 3
+
+        Label(self.window, image=self.bottleEmpty, bg=self.bg).grid(row=3, column=0, sticky=W)
+        Label(self.window, image=self.bottleEmpty, bg=self.bg).grid(row=3, column=1, sticky=W)
+        Label(self.window, image=self.bottleEmpty, bg=self.bg).grid(row=3, column=2, sticky=W)
+        Label(self.window, image=self.bottleEmpty, bg=self.bg).grid(row=3, column=3, sticky=W)
+        Label(self.window, image=self.lightArrows, bg=self.bg).grid(row=3, column=4, sticky=W)
+        Label(self.window, image=self.naryusLove, bg=self.bg).grid(row=3, column=5, sticky=W)
 
         # self.window.columnconfigure(0, weight=4)
         # self.window.columnconfigure(1, weight=1)
