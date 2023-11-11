@@ -20,7 +20,14 @@ class Window:
     canvas: tkinter.Canvas
 
     def make_equipment_images(self):
-        pass
+        for equipment in self.save.equipments:
+            if equipment.image_path != '':
+                # if not hasattr(equipment, 'label'):
+                equipment.label = Label(self.window, image=equipment.image, bg=self.bg)
+                equipment.label.grid(row=equipment.position.row,
+                                     column=equipment.position.column,
+                                     sticky=equipment.position.sticky)
+                # equipment.label
 
     def __init__(self, title: str, geometry: str):
         def get_path():
@@ -37,6 +44,7 @@ class Window:
 
         def get_info():
             self.save.get_info()
+            self.make_equipment_images()
 
         self.window.title(title)
         self.window.geometry(geometry)
@@ -44,8 +52,8 @@ class Window:
         self.window.iconbitmap("assets/other/enhancedDefence.ico")
         self.window.config(background=self.bg)
 
-        #variable image
-        #Image Menu Bar
+        # variable image
+        # Image Menu Bar
         self.openicon = PhotoImage(file="assets/other/folder.png")
         self.openicon.image = self.openicon
 
@@ -55,8 +63,8 @@ class Window:
         self.exiticon = PhotoImage(file="assets/other/logout.png")
         self.exiticon.image = self.exiticon
 
-        #Image Items
-        #Row 0
+        # Image Items
+        # Row 0
         self.deku_stick = PhotoImage(file=r"assets/items/dekuStick.png")
         self.deku_stick.image = self.deku_stick
 
@@ -78,7 +86,7 @@ class Window:
         self.worldMap = PhotoImage(file=r"assets/maps/worldMap.png")
         self.worldMap.image = self.worldMap
 
-        #Row 1
+        # Row 1
         self.fairy_Slingshot = PhotoImage(file=r"assets/items/fairySlingshot.png")
         self.fairy_Slingshot.image = self.fairy_Slingshot
 
@@ -103,7 +111,7 @@ class Window:
         self.faroresWind = PhotoImage(file=r"assets/items/faroresWind.png")
         self.faroresWind.image = self.faroresWind
 
-        #row 2
+        # row 2
 
         self.boomerang = PhotoImage(file=r"assets/items/boomerang.png")
         self.boomerang.image = self.boomerang
@@ -123,7 +131,7 @@ class Window:
         self.naryusLove = PhotoImage(file=r"assets/items/naryusLove.png")
         self.naryusLove.image = self.naryusLove
 
-        #menubar
+        # menubar
         menubar = Menu(self.window)
         filemenu = Menu(menubar, tearoff=0)
 
@@ -133,18 +141,18 @@ class Window:
         filemenu.add_command(label="Exit", image=self.exiticon, compound="left", command=alertbox)
         menubar.add_cascade(label="File", menu=filemenu)
 
-        #Placement Item Track
+        # Placement Item Track
         Label(self.window, image=self.worldMap, bg=self.bg).grid(row=0, rowspan=3, column=6, sticky=W + E + N + S)
 
-        #Row = 0
-        Label(self.window, image=self.deku_stick, bg=self.bg).grid(row=0, column=0,sticky=W)
+        # Row = 0
+        Label(self.window, image=self.deku_stick, bg=self.bg).grid(row=0, column=0, sticky=W)
         Label(self.window, image=self.deku_nut, bg=self.bg).grid(row=0, column=1, sticky=W)
         Label(self.window, image=self.bombs, bg=self.bg).grid(row=0, column=2, sticky=W)
         Label(self.window, image=self.bow, bg=self.bg).grid(row=0, column=3, sticky=W)
         Label(self.window, image=self.fireArrow, bg=self.bg).grid(row=0, column=4, sticky=W)
         Label(self.window, image=self.dinsFire, bg=self.bg).grid(row=0, column=5, sticky=W)
 
-        #Row = 1
+        # Row = 1
         Label(self.window, image=self.fairy_Slingshot, bg=self.bg).grid(row=1, column=0, sticky=W)
         Label(self.window, image=self.fairy_Ocarina, bg=self.bg).grid(row=1, column=1, sticky=W)
         Label(self.window, image=self.bombchus, bg=self.bg).grid(row=1, column=2, sticky=W)

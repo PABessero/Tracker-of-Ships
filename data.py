@@ -1,6 +1,8 @@
 import json
 import tkinter
 
+from PIL import ImageTk, Image
+
 
 class Dungeon:
     name: str
@@ -52,13 +54,27 @@ class Position:
 
 class Equipment:
     name: str = ''
-    image: str = ''
+    image_path: str = ''
     obtained: bool = False
     position: Position
+    # label: tkinter.Label
 
-    def __init__(self, name: str, image: str = ''):
+    def set_obtained(self, obtained):
+        self.obtained = obtained
+        if self.obtained:
+            self.image = ImageTk.PhotoImage(Image.open(self.image_path))
+        else:
+            self.image = ImageTk.PhotoImage(Image.open(self.image_path).convert('LA'))
+
+        # if hasattr(self, 'label'):
+        #     self.label.
+
+    def __init__(self, name: str, image_path: str = ''):
         self.name = name
-        self.image = image
+        self.image_path = image_path
+
+        if self.image_path != '':
+            self.image = ImageTk.PhotoImage(Image.open(self.image_path))
 
     def __str__(self):
         return 'Item: ' + self.name + (" (Y)" if self.obtained else " (N)")
@@ -168,12 +184,12 @@ class Save:
         index = self.equipments.index(equipment_name)
 
         self.equipments[index].position = position
-        self.equipments[index].image = image_path
+        self.equipments[index].image_path = image_path
 
         if obtained == "0":
-            self.equipments[index].obtained = False
+            self.equipments[index].set_obtained(False)
         else:
-            self.equipments[index].obtained = True
+            self.equipments[index].set_obtained(True)
 
     def create_or_update_item(self):
         pass
