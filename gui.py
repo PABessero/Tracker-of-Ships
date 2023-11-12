@@ -17,15 +17,17 @@ class Window:
 
     window = Tk()
 
+    equipment_parent = window
+
     save: Save = Save()
 
     canvas: tkinter.Canvas
 
-    def make_equipment_images(self):
+    def make_equipment_images(self, parent=equipment_parent):
         for equipment in self.save.equipments:
             if equipment.image_path != '':
                 # if not hasattr(equipment, 'label'):
-                equipment.label = Label(self.window, image=equipment.image, bg=self.bg)
+                equipment.label = Label(parent, image=equipment.image, bg=self.bg)
                 equipment.label.grid(row=equipment.position.row,
                                      column=equipment.position.column,
                                      sticky=equipment.position.sticky)
@@ -45,7 +47,7 @@ class Window:
 
     def get_info(self):
         self.save.get_info()
-        self.make_equipment_images()
+        self.make_equipment_images(parent=self.equipment_parent)
 
     def get_path(self):
         file_path = tkinter.filedialog.askopenfilename()
