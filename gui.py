@@ -287,7 +287,6 @@ class App:
 
         self.tmp_item_grid()
 
-
         # self.window.columnconfigure(0, weight=4)
         # self.window.columnconfigure(1, weight=1)
 
@@ -297,17 +296,17 @@ class App:
 class Window(tkinter.Toplevel):
     app: App
 
-    def __init__(self, parent):
+    def __init__(self, parent, title: str = 'Test Window'):
         self.app = parent
         super().__init__(parent.window)
 
         self.geometry('300x100')
-        self.title('Test Window')
+        self.title(title)
 
 
 class EquipmentWindow(Window):
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "Equipment Window")
 
     def destroy(self):
         self.app.equipment_parent = self.app.window
@@ -317,8 +316,8 @@ class EquipmentWindow(Window):
 
 class ItemWindow(Window):
     def __init__(self, parent):
-        super().__init__(parent)
-        
+        super().__init__(parent, "Item Window")
+
     def destroy(self):
         self.app.item_parent = self.app.window
         self.app.get_info()
