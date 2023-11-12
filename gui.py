@@ -229,7 +229,8 @@ class Window:
         menubar.add_cascade(label="File", menu=filemenu)
 
         # Placement Item Track
-        Label(self.window, image=self.worldMap, bg=self.bg).grid(row=0, rowspan=11, column=6, sticky=W + E + N + S)
+        Label(self.window, image=self.worldMap, bg=self.bg).grid(row=0, rowspan=11, column=8, columnspan=10,sticky=SE)
+        self.window.columnconfigure(8, weight=10)
 
         # Row = 0
         Label(self.window, image=self.deku_stick, bg=self.bg).grid(row=0, column=0, sticky=W)

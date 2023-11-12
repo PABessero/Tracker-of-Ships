@@ -160,26 +160,26 @@ class Save:
                                         r'assets/items/equipMasterSword.png', Position(1, 4, tkinter.W))
         self.create_or_update_equipment('Giant Knife & Biggoron', bin(equipment >> 2)[-1],
                                         r'assets/items/equipBiggoronsSword.png', Position(2, 4, tkinter.W))
-        self.create_or_update_equipment('Goron Sword (Broken)', bin(equipment >> 3)[-1],
-                                        r'assets/items/equipBrokenKnife.png', Position(3, 4, tkinter.W))
+        # self.create_or_update_equipment('Goron Sword (Broken)', bin(equipment >> 3)[-1],
+        #                                 r'assets/items/equipBrokenKnife.png', Position(3, 4, tkinter.W))
         self.create_or_update_equipment('Deku Shield', bin(equipment >> 4)[-1],
-                                        r'assets/items/equipDekuShield.png', Position(4, 4, tkinter.W))
+                                        r'assets/items/equipDekuShield.png', Position(3, 4, tkinter.W))
         self.create_or_update_equipment('Hylian Shield', bin(equipment >> 5)[-1],
-                                        r'assets/items/equipHylianShield.png', Position(5, 4, tkinter.W))
+                                        r'assets/items/equipHylianShield.png', Position(4, 4, tkinter.W))
         self.create_or_update_equipment('Mirror Shield', bin(equipment >> 6)[-1],
-                                        r'assets/items/equipMirrorShield.png', Position(0, 5, tkinter.W))
+                                        r'assets/items/equipMirrorShield.png', Position(5, 4, tkinter.W))
         self.create_or_update_equipment('Kokiri Tunic', bin(equipment >> 8)[-1],
-                                        r'assets/items/equipKokiriTunic.png', Position(1, 5, tkinter.W))
+                                        r'assets/items/equipKokiriTunic.png', Position(0, 5, tkinter.W))
         self.create_or_update_equipment('Goron Tunic', bin(equipment >> 9)[-1],
-                                        r'assets/items/equipGoronTunic.png', Position(2, 5, tkinter.W))
+                                        r'assets/items/equipGoronTunic.png', Position(1, 5, tkinter.W))
         self.create_or_update_equipment('Zora Tunic', bin(equipment >> 10)[-1],
-                                        r'assets/items/equipZoraTunic.png', Position(3, 5, tkinter.W))
+                                        r'assets/items/equipZoraTunic.png', Position(2, 5, tkinter.W))
         self.create_or_update_equipment('Kokiri Boots', bin(equipment >> 12)[-1],
-                                        r'assets/items/equipKokiriBoots.png', Position(4, 5, tkinter.W))
+                                        r'assets/items/equipKokiriBoots.png', Position(3, 5, tkinter.W))
         self.create_or_update_equipment('Iron Boots', bin(equipment >> 13)[-1],
-                                        r'assets/items/equipIronBoots.png', Position(5, 5, tkinter.W))
+                                        r'assets/items/equipIronBoots.png', Position(4, 5, tkinter.W))
         self.create_or_update_equipment('Hover Boots', bin(equipment >> 14)[-1],
-                                        r'assets/items/equipHoverBoots.png', Position(0, 6, tkinter.W))
+                                        r'assets/items/equipHoverBoots.png', Position(5, 5, tkinter.W))
 
     def parse_inventory(self, items: [int]):
         pass
