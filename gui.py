@@ -96,43 +96,7 @@ class App:
         Label(self.window, image=self.lightArrows, bg=self.bg).grid(row=3, column=4, sticky=W)
         Label(self.window, image=self.naryusLove, bg=self.bg).grid(row=3, column=5, sticky=W)
 
-    # noinspection PyTypeChecker
-    def get_info(self):
-        if self.save.path != "":
-            self.save.get_info()
-            self.make_equipment_images(parent=self.equipment_parent)
-
-    def get_path(self):
-        file_path = tkinter.filedialog.askopenfilename()
-        print("Path: " + file_path)
-        if ".sav" in file_path:
-            self.save.path = file_path
-            self.save.last_update = os.stat(file_path).st_mtime
-            self.get_info()
-        else:
-            print("File doesnt match the right extension")
-
-    def __init__(self, title: str, geometry: str):
-
-        self.window.title(title)
-        self.window.geometry(geometry)
-        self.window.minsize(480, 360)
-        self.window.iconbitmap("assets/other/enhancedDefence.ico")
-        self.window.config(background=self.bg)
-
-        self.window.after(10, self.update_save)
-
-        # variable image
-        # Image Menu Bar
-        self.openicon = PhotoImage(file="assets/other/folder.png")
-        self.openicon.image = self.openicon
-
-        self.infoicon = PhotoImage(file="assets/other/info.png")
-        self.infoicon.image = self.infoicon
-
-        self.exiticon = PhotoImage(file="assets/other/logout.png")
-        self.exiticon.image = self.exiticon
-
+    def load_image_item(self):
         # Image Items
         # Row 0
         self.deku_stick = PhotoImage(file=r"assets/items/dekuStick.png")
@@ -272,20 +236,82 @@ class App:
         self.adultPocketEgg = PhotoImage(file=r"assets/items/adultPocketEgg.png")
         self.adultPocketEgg = self.adultPocketEgg
 
+    def load_image_icon(self):
+        # variable image
+        # Image Menu Bar
+        self.openicon = PhotoImage(file="assets/other/folder.png")
+        self.openicon.image = self.openicon
+
+        self.infoicon = PhotoImage(file="assets/other/info.png")
+        self.infoicon.image = self.infoicon
+
+        self.exiticon = PhotoImage(file="assets/other/logout.png")
+        self.exiticon.image = self.exiticon
+
+        self.popout_icon = PhotoImage(file=r"assets/other/popout.png")
+        self.popout_icon.image = self.popout_icon
+
+        self.popout_equipment_icon = PhotoImage(file=r"assets/other/popoutEquipment.png")
+        self.popout_equipment_icon.image = self.popout_equipment_icon
+
+        self.option_icon = PhotoImage(file=r"assets/other/Option.png")
+        self.option_icon.image = self.option_icon
+
+        self.background_color_option_icon = PhotoImage(file=r"assets/other/backgroundColorOption.png")
+        self.background_color_option_icon.image = self.background_color_option_icon
+
+    # noinspection PyTypeChecker
+    def get_info(self):
+        if self.save.path != "":
+            self.save.get_info()
+            self.make_equipment_images(parent=self.equipment_parent)
+
+    def get_path(self):
+        file_path = tkinter.filedialog.askopenfilename()
+        print("Path: " + file_path)
+        if ".sav" in file_path:
+            self.save.path = file_path
+            self.save.last_update = os.stat(file_path).st_mtime
+            self.get_info()
+        else:
+            print("File doesnt match the right extension")
+
+    def __init__(self, title: str, geometry: str):
+
+        self.window.title(title)
+        self.window.geometry(geometry)
+        self.window.minsize(480, 360)
+        self.window.iconbitmap("assets/other/enhancedDefence.ico")
+        self.window.config(background=self.bg)
+
+        self.window.after(10, self.update_save)
+
+        self.load_image_icon()
+        self.load_image_item()
+
         # menubar
         menubar = Menu(self.window)
         filemenu = Menu(menubar, tearoff=0)
 
-        filemenu.add_command(label="Open", image=self.openicon, compound="left", command=self.get_path,
-                             accelerator="Ctrl+O")
+        filemenu.add_command(label="Open", image=self.openicon, compound="left", command=self.get_path,accelerator="Ctrl+O")
         filemenu.add_command(label="Get info", image=self.infoicon, compound="left", command=self.get_info)
-        filemenu.add_command(label="Popout Equipment", compound="left", command=self.popout_equipment)
+
+        sub_menu_popout = Menu(filemenu, tearoff=0)
+        filemenu.add_cascade(label="Popout", menu=sub_menu_popout, image=self.popout_icon, compound="left")
+        sub_menu_popout.add_command(label="Popout Equipment", image=self.popout_equipment_icon, compound="left", command=self.popout_equipment)
+
+        sub_menu_option = Menu(filemenu, tearoff=0)
+        filemenu.add_cascade(label="Option", menu=sub_menu_option, image=self.option_icon, compound="left")
+        sub_menu_option.add_command(label="Background Color Option", image=self.background_color_option_icon, compound="left", command=self.pick_background_color)
+
         filemenu.add_separator()
+
         filemenu.add_command(label="Exit", image=self.exiticon, compound="left", command=self.alertbox)
-        filemenu.add_command(label="Test", compound="left", command=self.pick_background_color)
+
         menubar.add_cascade(label="File", menu=filemenu)
 
         self.tmp_item_grid()
+
 
         # self.window.columnconfigure(0, weight=4)
         # self.window.columnconfigure(1, weight=1)
@@ -296,17 +322,17 @@ class App:
 class Window(tkinter.Toplevel):
     app: App
 
-    def __init__(self, parent, title: str = 'Test Window'):
+    def __init__(self, parent):
         self.app = parent
         super().__init__(parent.window)
 
         self.geometry('300x100')
-        self.title(title)
+        self.title('Test Window')
 
 
 class EquipmentWindow(Window):
     def __init__(self, parent):
-        super().__init__(parent, "Equipment Window")
+        super().__init__(parent)
 
     def destroy(self):
         self.app.equipment_parent = self.app.window
@@ -316,8 +342,8 @@ class EquipmentWindow(Window):
 
 class ItemWindow(Window):
     def __init__(self, parent):
-        super().__init__(parent, "Item Window")
-
+        super().__init__(parent)
+        
     def destroy(self):
         self.app.item_parent = self.app.window
         self.app.get_info()
