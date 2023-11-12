@@ -188,7 +188,19 @@ class Save:
                                         r'assets/items/equipHoverBoots.png', Position(5, 5, tkinter.W))
 
     def parse_inventory(self, items: [int]):
-        pass
+        # if bin(items[0] >> 1)[-1] == '0'
+        self.create_or_update_item("Deku Stick", bin(items[0] >> 0)[-1],
+                                   r'assets/items/dekuStick.png', Position(0, 0, tkinter.W))
+        self.create_or_update_item("Deku Nut", bin(items[1] >> 1)[-1],
+                                   r'assets/items/dekuNut.png', Position(1, 0, tkinter.W))
+        self.create_or_update_item("Bomb", bin(items[2] >> 2)[-1],
+                                   r'assets/items/bombs.png', Position(2, 0, tkinter.W))
+        self.create_or_update_item("Fairy Bow", bin(items[3] >> 3)[-1],
+                                   r'assets/items/bow.png', Position(3, 0, tkinter.W))
+        self.create_or_update_item("Fire Arrow", bin(items[4] >> 4)[-1],
+                                   r'assets/items/fireArrow.png', Position(4, 0, tkinter.W))
+        self.create_or_update_item("Din's Fire", bin(items[5] >> 5)[-1],
+                                   r'assets/items/dinsFire.png', Position(5, 0, tkinter.W))
 
     def create_or_update_dungeon(self, dungeon_name: str, binary: int, dungeon_keys: int = 0, image_path: str = ''):
         if dungeon_name in self.dungeons:

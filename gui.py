@@ -20,6 +20,8 @@ class App:
 
     equipment_parent = window
 
+    item_parent = window
+
     save: Save = Save()
 
     canvas: tkinter.Canvas
@@ -38,15 +40,16 @@ class App:
     def bind_to(self, callback):
         self._bg_observers.append(callback)
 
-    def make_equipment_images(self, parent=equipment_parent):
-        for equipment in self.save.equipments:
-            if equipment.image_path != '':
-                # if not hasattr(equipment, 'label'):
-                equipment.label = Label(parent, image=equipment.image, bg=self.bg)
-                self.bind_to(equipment.update_background_color)
-                equipment.label.grid(row=equipment.position.row,
-                                     column=equipment.position.column,
-                                     sticky=equipment.position.sticky)
+    def make_images(self, parent=window, show_array=None):
+        if show_array is None:
+            show_array = []
+        for show_item in show_array:
+            if show_item.image_path != '':
+                show_item.label = Label(parent, image=show_item.image, bg=self.bg)
+                self.bind_to(show_item.update_background_color)
+                show_item.label.grid(row=show_item.position.row,
+                                     column=show_item.position.column,
+                                     sticky=show_item.position.sticky)
 
     def popout_equipment(self):
         window = EquipmentWindow(self)
@@ -272,12 +275,14 @@ class App:
 
         self.adultPocketEgg = PhotoImage(file=r"assets/items/adultPocketEgg.png")
         self.adultPocketEgg = self.adultPocketEgg
+
     # noinspection PyTypeChecker
 
     def get_info(self):
         if self.save.path != "":
             self.save.get_info()
-            self.make_equipment_images(parent=self.equipment_parent)
+            self.make_images(self.equipment_parent, self.save.equipments)
+            self.make_images(self.equipment_parent, self.save.items)
 
     def get_path(self):
         file_path = tkinter.filedialog.askopenfilename()
