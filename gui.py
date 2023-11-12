@@ -52,7 +52,7 @@ class App:
                                      sticky=show_item.position.sticky)
 
     def popout_equipment(self):
-        window = EquipmentWindow(self)
+        window = EquipmentWindow(self, "375x120")
         self.equipment_parent = window
         self.get_info()
 
@@ -79,38 +79,14 @@ class App:
         Label(self.window, image=self.worldMap, bg=self.bg).grid(row=0, rowspan=11, column=8, columnspan=10, sticky=SE)
         self.window.columnconfigure(8, weight=10)
 
-        # Row = 0
-        # Label(self.window, image=self.deku_stick, bg=self.bg).grid(row=0, column=0, sticky=W)
-        # Label(self.window, image=self.deku_nut, bg=self.bg).grid(row=0, column=1, sticky=W)
-        # Label(self.window, image=self.bombs, bg=self.bg).grid(row=0, column=2, sticky=W)
-        # Label(self.window, image=self.bow, bg=self.bg).grid(row=0, column=3, sticky=W)
-        # Label(self.window, image=self.fireArrow, bg=self.bg).grid(row=0, column=4, sticky=W)
-        # Label(self.window, image=self.dinsFire, bg=self.bg).grid(row=0, column=5, sticky=W)
-
-        # Row = 1
-        # Label(self.window, image=self.fairy_Slingshot, bg=self.bg).grid(row=1, column=0, sticky=W)
-        # Label(self.window, image=self.fairy_Ocarina, bg=self.bg).grid(row=1, column=1, sticky=W)
-        # Label(self.window, image=self.bombchus, bg=self.bg).grid(row=1, column=2, sticky=W)
-        # Label(self.window, image=self.hookshot, bg=self.bg).grid(row=1, column=3, sticky=W)
-        # Label(self.window, image=self.iceArrow, bg=self.bg).grid(row=1, column=4, sticky=W)
-        # Label(self.window, image=self.faroresWind, bg=self.bg).grid(row=1, column=5, sticky=W)
-
-        # Row = 2
-        # Label(self.window, image=self.boomerang, bg=self.bg).grid(row=2, column=0, sticky=W)
-        # Label(self.window, image=self.lensOfTruth, bg=self.bg).grid(row=2, column=1, sticky=W)
-        # Label(self.window, image=self.magicBeans, bg=self.bg).grid(row=2, column=2, sticky=W)
-        # Label(self.window, image=self.megatonHammer, bg=self.bg).grid(row=2, column=3, sticky=W)
-        # Label(self.window, image=self.lightArrows, bg=self.bg).grid(row=2, column=4, sticky=W)
-        # Label(self.window, image=self.naryusLove, bg=self.bg).grid(row=2, column=5, sticky=W)
-
         # Row = 3
 
         Label(self.window, image=self.bottleEmpty, bg=self.bg).grid(row=3, column=0, sticky=W)
         Label(self.window, image=self.bottleEmpty, bg=self.bg).grid(row=3, column=1, sticky=W)
         Label(self.window, image=self.bottleEmpty, bg=self.bg).grid(row=3, column=2, sticky=W)
         Label(self.window, image=self.bottleEmpty, bg=self.bg).grid(row=3, column=3, sticky=W)
-        Label(self.window, image=self.lightArrows, bg=self.bg).grid(row=3, column=4, sticky=W)
-        Label(self.window, image=self.naryusLove, bg=self.bg).grid(row=3, column=5, sticky=W)
+        # Label(self.window, image=self.lightArrows, bg=self.bg).grid(row=3, column=4, sticky=W)
+        # Label(self.window, image=self.naryusLove, bg=self.bg).grid(row=3, column=5, sticky=W)
 
     def load_image_icon(self):
         # variable image
@@ -137,74 +113,8 @@ class App:
         self.background_color_option_icon.image = self.background_color_option_icon
 
     def load_image_item(self):
-        # Image Items
-        # Row 0
-        self.deku_stick = PhotoImage(file=r"assets/items/dekuStick.png")
-        self.deku_stick.image = self.deku_stick
-
-        self.deku_nut = PhotoImage(file=r"assets/items/dekuNut.png")
-        self.deku_nut.image = self.deku_nut
-
-        self.bombs = PhotoImage(file=r"assets/items/bombs.png")
-        self.bombs.image = self.bombs
-
-        self.bow = PhotoImage(file=r"assets/items/bow.png")
-        self.bow.image = self.bow
-
-        self.fireArrow = PhotoImage(file=r"assets/items/fireArrow.png")
-        self.fireArrow.image = self.fireArrow
-
-        self.dinsFire = PhotoImage(file=r"assets/items/dinsFire.png")
-        self.dinsFire.image = self.dinsFire
-
         self.worldMap = PhotoImage(file=r"assets/maps/worldMap.png")
         self.worldMap.image = self.worldMap
-
-        # Row 1
-        self.fairy_Slingshot = PhotoImage(file=r"assets/items/fairySlingshot.png")
-        self.fairy_Slingshot.image = self.fairy_Slingshot
-
-        self.fairy_Ocarina = PhotoImage(file=r"assets/items/fairyOcarina.png")
-        self.fairy_Ocarina.image = self.fairy_Ocarina
-
-        self.ocarinaOfTime = PhotoImage(file=r"assets/items/ocarinaOfTime.png")
-        self.ocarinaOfTime.image = self.ocarinaOfTime
-
-        self.bombchus = PhotoImage(file=r"assets/items/bombchus.png")
-        self.bombchus.image = self.bombchus
-
-        self.hookshot = PhotoImage(file=r"assets/items/hookshot.png")
-        self.hookshot.image = self.hookshot
-
-        self.longshot = PhotoImage(file=r"assets/items/longshot.png")
-        self.longshot.image = self.longshot
-
-        self.iceArrow = PhotoImage(file=r"assets/items/iceArrows.png")
-        self.iceArrow.image = self.iceArrow
-
-        self.faroresWind = PhotoImage(file=r"assets/items/faroresWind.png")
-        self.faroresWind.image = self.faroresWind
-
-        # row 2
-
-        self.boomerang = PhotoImage(file=r"assets/items/boomerang.png")
-        self.boomerang.image = self.boomerang
-
-        self.lensOfTruth = PhotoImage(file=r"assets/items/lensOfTruth.png")
-        self.lensOfTruth.image = self.lensOfTruth
-
-        self.magicBeans = PhotoImage(file=r"assets/items/magicBeans.png")
-        self.magicBeans.image = self.magicBeans
-
-        self.megatonHammer = PhotoImage(file=r"assets/items/megatonHammer.png")
-        self.megatonHammer.image = self.megatonHammer
-
-        self.lightArrows = PhotoImage(file=r"assets/items/lightArrows.png")
-        self.lightArrows.image = self.lightArrows
-
-        self.naryusLove = PhotoImage(file=r"assets/items/nayrusLove.png")
-        self.naryusLove.image = self.naryusLove
-
         # row 3
 
         self.bottleEmpty = PhotoImage(file=r"assets/items/bottleEmpty.png")
@@ -344,17 +254,19 @@ class App:
 class Window(tkinter.Toplevel):
     app: App
 
-    def __init__(self, parent, title: str = 'Test Window'):
+    def __init__(self, parent, title: str = 'Test Window', geometry="300x100"):
         self.app = parent
         super().__init__(parent.window)
 
-        self.geometry('300x100')
+        self.geometry(geometry)
         self.title(title)
 
 
 class EquipmentWindow(Window):
-    def __init__(self, parent):
-        super().__init__(parent, "Equipment Window")
+    def __init__(self, parent, geometry = "300x100", **kwargs):
+        super().__init__(parent, "Equipment Window", geometry, **kwargs)
+        self.attributes("-topmost", True)
+        self.configure(bg=parent.bg)
 
     def destroy(self):
         self.app.equipment_parent = self.app.window
