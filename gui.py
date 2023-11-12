@@ -10,7 +10,7 @@ from data import Save
 
 
 class App:
-    bg = "black"
+    _bg = "black"
     font = "Arial"
     fg = "white"
     width = 600
@@ -23,6 +23,17 @@ class App:
     save: Save = Save()
 
     canvas: tkinter.Canvas
+
+    @property
+    def bg(self):
+        return self._bg
+
+    @bg.setter
+    def bg(self, value):
+        self._bg = value
+
+        for callback in self._bg_observers:
+            callback(self._bg)
 
     def make_equipment_images(self, parent=equipment_parent):
         for equipment in self.save.equipments:
@@ -47,7 +58,7 @@ class App:
                 self.save.last_update = os.stat(self.save.path).st_mtime
         self.window.after(10, self.update_save)
 
-    def alertbox(self):
+    def alert_box(self):
         if askyesno('Warning', 'Are you sure you want to do this?'):
             self.window.destroy()
 
@@ -97,6 +108,45 @@ class App:
         Label(self.window, image=self.naryusLove, bg=self.bg).grid(row=3, column=5, sticky=W)
 
     def load_image_item(self):
+    # noinspection PyTypeChecker
+    def get_info(self):
+        if self.save.path != "":
+            self.save.get_info()
+            self.make_equipment_images(parent=self.equipment_parent)
+
+    def get_path(self):
+        file_path = tkinter.filedialog.askopenfilename()
+        print("Path: " + file_path)
+        if ".sav" in file_path:
+            self.save.path = file_path
+            self.save.last_update = os.stat(file_path).st_mtime
+            self.get_info()
+        else:
+            print("File doesnt match the right extension")
+
+    def __init__(self, title: str, geometry: str):
+
+        self._bg_observers = []
+
+        self.window.title(title)
+        self.window.geometry(geometry)
+        self.window.minsize(480, 360)
+        self.window.iconbitmap("assets/other/enhancedDefence.ico")
+        self.window.config(background=self.bg)
+
+        self.window.after(10, self.update_save)
+
+        # variable image
+        # Image Menu Bar
+        self.openicon = PhotoImage(file="assets/other/folder.png")
+        self.openicon.image = self.openicon
+
+        self.infoicon = PhotoImage(file="assets/other/info.png")
+        self.infoicon.image = self.infoicon
+
+        self.exiticon = PhotoImage(file="assets/other/logout.png")
+        self.exiticon.image = self.exiticon
+
         # Image Items
         # Row 0
         self.deku_stick = PhotoImage(file=r"assets/items/dekuStick.png")
@@ -312,7 +362,6 @@ class App:
 
         self.tmp_item_grid()
 
-
         # self.window.columnconfigure(0, weight=4)
         # self.window.columnconfigure(1, weight=1)
 
@@ -322,17 +371,17 @@ class App:
 class Window(tkinter.Toplevel):
     app: App
 
-    def __init__(self, parent):
+    def __init__(self, parent, title: str = 'Test Window'):
         self.app = parent
         super().__init__(parent.window)
 
         self.geometry('300x100')
-        self.title('Test Window')
+        self.title(title)
 
 
 class EquipmentWindow(Window):
     def __init__(self, parent):
-        super().__init__(parent)
+        super().__init__(parent, "Equipment Window")
 
     def destroy(self):
         self.app.equipment_parent = self.app.window
@@ -342,8 +391,8 @@ class EquipmentWindow(Window):
 
 class ItemWindow(Window):
     def __init__(self, parent):
-        super().__init__(parent)
-        
+        super().__init__(parent, "Item Window")
+
     def destroy(self):
         self.app.item_parent = self.app.window
         self.app.get_info()
