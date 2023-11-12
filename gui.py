@@ -111,6 +111,30 @@ class App:
         Label(self.window, image=self.lightArrows, bg=self.bg).grid(row=3, column=4, sticky=W)
         Label(self.window, image=self.naryusLove, bg=self.bg).grid(row=3, column=5, sticky=W)
 
+    def load_image_icon(self):
+        # variable image
+        # Image Menu Bar
+        self.openicon = PhotoImage(file="assets/other/folder.png")
+        self.openicon.image = self.openicon
+
+        self.infoicon = PhotoImage(file="assets/other/info.png")
+        self.infoicon.image = self.infoicon
+
+        self.exiticon = PhotoImage(file="assets/other/logout.png")
+        self.exiticon.image = self.exiticon
+
+        self.popout_icon = PhotoImage(file=r"assets/other/popout.png")
+        self.popout_icon.image = self.popout_icon
+
+        self.popout_equipment_icon = PhotoImage(file=r"assets/other/popoutEquipment.png")
+        self.popout_equipment_icon.image = self.popout_equipment_icon
+
+        self.option_icon = PhotoImage(file=r"assets/other/Option.png")
+        self.option_icon.image = self.option_icon
+
+        self.background_color_option_icon = PhotoImage(file=r"assets/other/backgroundColorOption.png")
+        self.background_color_option_icon.image = self.background_color_option_icon
+
     def load_image_item(self):
         # Image Items
         # Row 0
@@ -250,8 +274,8 @@ class App:
 
         self.adultPocketEgg = PhotoImage(file=r"assets/items/adultPocketEgg.png")
         self.adultPocketEgg = self.adultPocketEgg
-
     # noinspection PyTypeChecker
+
     def get_info(self):
         if self.save.path != "":
             self.save.get_info()
@@ -266,30 +290,6 @@ class App:
             self.get_info()
         else:
             print("File doesnt match the right extension")
-
-    def load_image_icon(self):
-        # variable image
-        # Image Menu Bar
-        self.openicon = PhotoImage(file="assets/other/folder.png")
-        self.openicon.image = self.openicon
-
-        self.infoicon = PhotoImage(file="assets/other/info.png")
-        self.infoicon.image = self.infoicon
-
-        self.exiticon = PhotoImage(file="assets/other/logout.png")
-        self.exiticon.image = self.exiticon
-
-        self.popout_icon = PhotoImage(file=r"assets/other/popout.png")
-        self.popout_icon.image = self.popout_icon
-
-        self.popout_equipment_icon = PhotoImage(file=r"assets/other/popoutEquipment.png")
-        self.popout_equipment_icon.image = self.popout_equipment_icon
-
-        self.option_icon = PhotoImage(file=r"assets/other/Option.png")
-        self.option_icon.image = self.option_icon
-
-        self.background_color_option_icon = PhotoImage(file=r"assets/other/backgroundColorOption.png")
-        self.background_color_option_icon.image = self.background_color_option_icon
 
     def __init__(self, title: str, geometry: str):
 
