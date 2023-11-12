@@ -108,45 +108,6 @@ class App:
         Label(self.window, image=self.naryusLove, bg=self.bg).grid(row=3, column=5, sticky=W)
 
     def load_image_item(self):
-    # noinspection PyTypeChecker
-    def get_info(self):
-        if self.save.path != "":
-            self.save.get_info()
-            self.make_equipment_images(parent=self.equipment_parent)
-
-    def get_path(self):
-        file_path = tkinter.filedialog.askopenfilename()
-        print("Path: " + file_path)
-        if ".sav" in file_path:
-            self.save.path = file_path
-            self.save.last_update = os.stat(file_path).st_mtime
-            self.get_info()
-        else:
-            print("File doesnt match the right extension")
-
-    def __init__(self, title: str, geometry: str):
-
-        self._bg_observers = []
-
-        self.window.title(title)
-        self.window.geometry(geometry)
-        self.window.minsize(480, 360)
-        self.window.iconbitmap("assets/other/enhancedDefence.ico")
-        self.window.config(background=self.bg)
-
-        self.window.after(10, self.update_save)
-
-        # variable image
-        # Image Menu Bar
-        self.openicon = PhotoImage(file="assets/other/folder.png")
-        self.openicon.image = self.openicon
-
-        self.infoicon = PhotoImage(file="assets/other/info.png")
-        self.infoicon.image = self.infoicon
-
-        self.exiticon = PhotoImage(file="assets/other/logout.png")
-        self.exiticon.image = self.exiticon
-
         # Image Items
         # Row 0
         self.deku_stick = PhotoImage(file=r"assets/items/dekuStick.png")
@@ -286,6 +247,46 @@ class App:
         self.adultPocketEgg = PhotoImage(file=r"assets/items/adultPocketEgg.png")
         self.adultPocketEgg = self.adultPocketEgg
 
+    # noinspection PyTypeChecker
+    def get_info(self):
+        if self.save.path != "":
+            self.save.get_info()
+            self.make_equipment_images(parent=self.equipment_parent)
+
+    def get_path(self):
+        file_path = tkinter.filedialog.askopenfilename()
+        print("Path: " + file_path)
+        if ".sav" in file_path:
+            self.save.path = file_path
+            self.save.last_update = os.stat(file_path).st_mtime
+            self.get_info()
+        else:
+            print("File doesnt match the right extension")
+
+    def __init__(self, title: str, geometry: str):
+
+        self._bg_observers = []
+
+        self.window.title(title)
+        self.window.geometry(geometry)
+        self.window.minsize(480, 360)
+        self.window.iconbitmap("assets/other/enhancedDefence.ico")
+        self.window.config(background=self.bg)
+
+        self.window.after(10, self.update_save)
+
+        # variable image
+        # Image Menu Bar
+        self.openicon = PhotoImage(file="assets/other/folder.png")
+        self.openicon.image = self.openicon
+
+        self.infoicon = PhotoImage(file="assets/other/info.png")
+        self.infoicon.image = self.infoicon
+
+        self.exiticon = PhotoImage(file="assets/other/logout.png")
+        self.exiticon.image = self.exiticon
+
+
     def load_image_icon(self):
         # variable image
         # Image Menu Bar
@@ -356,7 +357,7 @@ class App:
 
         filemenu.add_separator()
 
-        filemenu.add_command(label="Exit", image=self.exiticon, compound="left", command=self.alertbox)
+        filemenu.add_command(label="Exit", image=self.exiticon, compound="left", command=self.alert_box)
 
         menubar.add_cascade(label="File", menu=filemenu)
 
