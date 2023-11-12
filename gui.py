@@ -8,7 +8,7 @@ from tkinter.messagebox import *
 from data import Save
 
 
-class Window:
+class App:
     bg = "black"
     font = "Arial"
     fg = "white"
@@ -32,6 +32,11 @@ class Window:
                                      column=equipment.position.column,
                                      sticky=equipment.position.sticky)
                 # equipment.label
+
+    def popout_equipment(self):
+        window = EquipmentWindow(self)
+        self.equipment_parent = window
+        self.get_info()
 
     def update_save(self):
         if self.save.path != '':
@@ -226,12 +231,13 @@ class Window:
         filemenu.add_command(label="Open", image=self.openicon, compound="left", command=self.get_path,
                              accelerator="Ctrl+O")
         filemenu.add_command(label="Get info", image=self.infoicon, compound="left", command=self.get_info)
+        filemenu.add_command(label="Popout Equipment", compound="left", command=self.popout_equipment)
         filemenu.add_separator()
         filemenu.add_command(label="Exit", image=self.exiticon, compound="left", command=self.alertbox)
         menubar.add_cascade(label="File", menu=filemenu)
 
         # Placement Item Track
-        Label(self.window, image=self.worldMap, bg=self.bg).grid(row=0, rowspan=11, column=8, columnspan=10,sticky=SE)
+        Label(self.window, image=self.worldMap, bg=self.bg).grid(row=0, rowspan=11, column=8, columnspan=10, sticky=SE)
         self.window.columnconfigure(8, weight=10)
 
         # Row = 0
@@ -271,3 +277,36 @@ class Window:
         # self.window.columnconfigure(1, weight=1)
 
         self.window.config(menu=menubar)
+
+
+class Window(tkinter.Toplevel):
+    app: App
+
+    def __init__(self, parent):
+        self.app = parent
+        super().__init__(parent.window)
+
+        self.geometry('300x100')
+        self.title('Test Window')
+
+        self.protocol("WM_DELETE_WINDOW", )
+
+
+class EquipmentWindow(Window):
+    def __init__(self, parent):
+        super().__init__(parent)
+
+    def destroy(self):
+        self.app.equipment_parent = self.app.window
+        self.app.get_info()
+        super().destroy()
+
+
+class ItemWindow(Window):
+    def __init__(self, parent):
+        super().__init__(parent)
+        
+    def destroy(self):
+        self.app.item_parent = self.app.window
+        self.app.get_info()
+        super().destroy()

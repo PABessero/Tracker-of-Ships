@@ -1,4 +1,4 @@
-from gui import Window
+from gui import App
 
-test = Window(title="Tracker Of Ship", geometry="1080x720")
+test = App(title="Tracker Of Ship", geometry="1080x720")
 test.window.mainloop()
