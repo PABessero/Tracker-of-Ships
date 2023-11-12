@@ -10,7 +10,7 @@ from data import Save
 
 
 class App:
-    bg = "black"
+    _bg = "black"
     font = "Arial"
     fg = "white"
     width = 600
@@ -23,6 +23,17 @@ class App:
     save: Save = Save()
 
     canvas: tkinter.Canvas
+
+    @property
+    def bg(self):
+        return self._bg
+
+    @bg.setter
+    def bg(self, value):
+        self._bg = value
+
+        for callback in self._bg_observers:
+            callback(self._bg)
 
     def make_equipment_images(self, parent=equipment_parent):
         for equipment in self.save.equipments:
@@ -47,7 +58,7 @@ class App:
                 self.save.last_update = os.stat(self.save.path).st_mtime
         self.window.after(10, self.update_save)
 
-    def alertbox(self):
+    def alert_box(self):
         if askyesno('Warning', 'Are you sure you want to do this?'):
             self.window.destroy()
 
@@ -113,6 +124,8 @@ class App:
             print("File doesnt match the right extension")
 
     def __init__(self, title: str, geometry: str):
+
+        self._bg_observers = []
 
         self.window.title(title)
         self.window.geometry(geometry)
