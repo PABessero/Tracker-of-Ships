@@ -71,7 +71,7 @@ class App:
     def pick_background_color(self):
         self.bg = askcolor(self.bg, title="Test")[1] or "#0000a0"
         self.window.configure(bg=self.bg)
-        self.tmp_item_grid()
+        # self.tmp_item_grid()
 
     def tmp_item_grid(self):
 
@@ -80,28 +80,28 @@ class App:
         self.window.columnconfigure(8, weight=10)
 
         # Row = 0
-        Label(self.window, image=self.deku_stick, bg=self.bg).grid(row=0, column=0, sticky=W)
-        Label(self.window, image=self.deku_nut, bg=self.bg).grid(row=0, column=1, sticky=W)
-        Label(self.window, image=self.bombs, bg=self.bg).grid(row=0, column=2, sticky=W)
-        Label(self.window, image=self.bow, bg=self.bg).grid(row=0, column=3, sticky=W)
-        Label(self.window, image=self.fireArrow, bg=self.bg).grid(row=0, column=4, sticky=W)
-        Label(self.window, image=self.dinsFire, bg=self.bg).grid(row=0, column=5, sticky=W)
+        # Label(self.window, image=self.deku_stick, bg=self.bg).grid(row=0, column=0, sticky=W)
+        # Label(self.window, image=self.deku_nut, bg=self.bg).grid(row=0, column=1, sticky=W)
+        # Label(self.window, image=self.bombs, bg=self.bg).grid(row=0, column=2, sticky=W)
+        # Label(self.window, image=self.bow, bg=self.bg).grid(row=0, column=3, sticky=W)
+        # Label(self.window, image=self.fireArrow, bg=self.bg).grid(row=0, column=4, sticky=W)
+        # Label(self.window, image=self.dinsFire, bg=self.bg).grid(row=0, column=5, sticky=W)
 
         # Row = 1
-        Label(self.window, image=self.fairy_Slingshot, bg=self.bg).grid(row=1, column=0, sticky=W)
-        Label(self.window, image=self.fairy_Ocarina, bg=self.bg).grid(row=1, column=1, sticky=W)
-        Label(self.window, image=self.bombchus, bg=self.bg).grid(row=1, column=2, sticky=W)
-        Label(self.window, image=self.hookshot, bg=self.bg).grid(row=1, column=3, sticky=W)
-        Label(self.window, image=self.iceArrow, bg=self.bg).grid(row=1, column=4, sticky=W)
-        Label(self.window, image=self.faroresWind, bg=self.bg).grid(row=1, column=5, sticky=W)
+        # Label(self.window, image=self.fairy_Slingshot, bg=self.bg).grid(row=1, column=0, sticky=W)
+        # Label(self.window, image=self.fairy_Ocarina, bg=self.bg).grid(row=1, column=1, sticky=W)
+        # Label(self.window, image=self.bombchus, bg=self.bg).grid(row=1, column=2, sticky=W)
+        # Label(self.window, image=self.hookshot, bg=self.bg).grid(row=1, column=3, sticky=W)
+        # Label(self.window, image=self.iceArrow, bg=self.bg).grid(row=1, column=4, sticky=W)
+        # Label(self.window, image=self.faroresWind, bg=self.bg).grid(row=1, column=5, sticky=W)
 
         # Row = 2
-        Label(self.window, image=self.boomerang, bg=self.bg).grid(row=2, column=0, sticky=W)
-        Label(self.window, image=self.lensOfTruth, bg=self.bg).grid(row=2, column=1, sticky=W)
-        Label(self.window, image=self.magicBeans, bg=self.bg).grid(row=2, column=2, sticky=W)
-        Label(self.window, image=self.megatonHammer, bg=self.bg).grid(row=2, column=3, sticky=W)
-        Label(self.window, image=self.lightArrows, bg=self.bg).grid(row=2, column=4, sticky=W)
-        Label(self.window, image=self.naryusLove, bg=self.bg).grid(row=2, column=5, sticky=W)
+        # Label(self.window, image=self.boomerang, bg=self.bg).grid(row=2, column=0, sticky=W)
+        # Label(self.window, image=self.lensOfTruth, bg=self.bg).grid(row=2, column=1, sticky=W)
+        # Label(self.window, image=self.magicBeans, bg=self.bg).grid(row=2, column=2, sticky=W)
+        # Label(self.window, image=self.megatonHammer, bg=self.bg).grid(row=2, column=3, sticky=W)
+        # Label(self.window, image=self.lightArrows, bg=self.bg).grid(row=2, column=4, sticky=W)
+        # Label(self.window, image=self.naryusLove, bg=self.bg).grid(row=2, column=5, sticky=W)
 
         # Row = 3
 
@@ -202,7 +202,7 @@ class App:
         self.lightArrows = PhotoImage(file=r"assets/items/lightArrows.png")
         self.lightArrows.image = self.lightArrows
 
-        self.naryusLove = PhotoImage(file=r"assets/items/naryusLove.png")
+        self.naryusLove = PhotoImage(file=r"assets/items/nayrusLove.png")
         self.naryusLove.image = self.naryusLove
 
         # row 3

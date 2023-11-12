@@ -52,11 +52,12 @@ class Position:
         self.sticky = sticky
 
 
-class ShowableItem(object):
+class ShownItem(object):
     name: str = ''
     image_path: str = ''
     obtained: bool = False
     position: Position = Position()
+
     # label: tkinter.Label
 
     def update_background_color(self, bg):
@@ -89,13 +90,13 @@ class ShowableItem(object):
         return self.name == other
 
 
-class Equipment(ShowableItem):
+class Equipment(ShownItem):
 
     def __init__(self, name: str, image_path: str = ''):
         super().__init__(name, image_path)
 
 
-class Item(ShowableItem):
+class Item(ShownItem):
 
     def __init__(self, name: str, image_path: str = '', position: Position = Position()):
         super().__init__(name, image_path)
@@ -126,16 +127,6 @@ class Save:
         self.parse_dungeons(data['inventory']['dungeonItems'], data['inventory']['dungeonKeys'])
         self.parse_equipment(data['inventory']['equipment'])
         self.parse_inventory(data['inventory']['items'])
-
-        print('Double Defense: ' + str(self.doubleDefense))
-        print('Double Magic: ' + str(self.doubleMagic))
-
-        print(''.join(str(dungeon) for dungeon in self.dungeons))
-        for dungeon in self.dungeons:
-            print(dungeon)
-
-        for equipment in self.equipments:
-            print(equipment)
 
     def parse_dungeons(self, dungeons, dungeon_keys):
         self.create_or_update_dungeon('Deku Tree', dungeons[0], dungeon_keys[0])
@@ -189,18 +180,57 @@ class Save:
 
     def parse_inventory(self, items: [int]):
         # if bin(items[0] >> 1)[-1] == '0'
-        self.create_or_update_item("Deku Stick", bin(items[0] >> 0)[-1],
+        print(bin(items[0]))
+        self.create_or_update_item("Deku Stick", "0" if items[0] == 0 else "1",
                                    r'assets/items/dekuStick.png', Position(0, 0, tkinter.W))
-        self.create_or_update_item("Deku Nut", bin(items[1] >> 1)[-1],
+        self.create_or_update_item("Deku Nut", "0" if items[1] == 1 else "1",
                                    r'assets/items/dekuNut.png', Position(1, 0, tkinter.W))
-        self.create_or_update_item("Bomb", bin(items[2] >> 2)[-1],
+        self.create_or_update_item("Bomb", "0" if items[2] == 2 else "1",
                                    r'assets/items/bombs.png', Position(2, 0, tkinter.W))
-        self.create_or_update_item("Fairy Bow", bin(items[3] >> 3)[-1],
+        self.create_or_update_item("Fairy Bow", "0" if items[3] == 3 else "1",
                                    r'assets/items/bow.png', Position(3, 0, tkinter.W))
-        self.create_or_update_item("Fire Arrow", bin(items[4] >> 4)[-1],
+        self.create_or_update_item("Fire Arrow", "0" if items[4] == 4 else "1",
                                    r'assets/items/fireArrow.png', Position(4, 0, tkinter.W))
-        self.create_or_update_item("Din's Fire", bin(items[5] >> 5)[-1],
+        self.create_or_update_item("Din's Fire", "0" if items[5] == 5 else "1",
                                    r'assets/items/dinsFire.png', Position(5, 0, tkinter.W))
+
+        self.create_or_update_item("Fairy Slingshot", "0" if items[6] == 6 else "1",
+                                   r'assets/items/fairySlingshot.png', Position(0, 1, tkinter.W))
+        if items[7] == 8:
+            self.create_or_update_item("Ocarina of Time", "0" if items[7] == 8 else "1",
+                                       r'assets/items/ocarinaOfTime.png', Position(1, 1, tkinter.W))
+            self.delete_item("Fairy Ocarina")
+        else:
+            self.create_or_update_item("Fairy Ocarina", "0" if items[7] == 7 else "1",
+                                       r'assets/items/fairyOcarina.png', Position(1, 1, tkinter.W))
+            self.delete_item("Ocarina of Time")
+        self.create_or_update_item("Bombchu", "0" if items[8] == 9 else "1",
+                                   r'assets/items/bombchus.png', Position(2, 1, tkinter.W))
+        if items[9] == 11:
+            self.create_or_update_item("Longshot", "0" if items[9] == 11 else "1",
+                                       r'assets/items/longshot.png', Position(3, 1, tkinter.W))
+            self.delete_item("Hookshot")
+        else:
+            self.create_or_update_item("Hookshot", "0" if items[9] == 10 else "1",
+                                       r'assets/items/hookshot.png', Position(3, 1, tkinter.W))
+            self.delete_item("Longshot")
+        self.create_or_update_item("Ice Arrow", "0" if items[10] == 12 else "1",
+                                   r'assets/items/iceArrows.png', Position(4, 1, tkinter.W))
+        self.create_or_update_item("Farore's Wind", "0" if items[11] == 13 else "1",
+                                   r'assets/items/faroresWind.png', Position(5, 1, tkinter.W))
+
+        self.create_or_update_item("Boomerang", "0" if items[12] == 14 else "1",
+                                   r'assets/items/boomerang.png', Position(5, 1, tkinter.W))
+        self.create_or_update_item("Lens of Truth", "0" if items[13] == 15 else "1",
+                                   r'assets/items/lensOfTruth.png', Position(5, 1, tkinter.W))
+        self.create_or_update_item("Magic Bean", "0" if items[14] == 16 else "1",
+                                   r'assets/items/magicBeans.png', Position(5, 1, tkinter.W))
+        self.create_or_update_item("Megaton Hammer", "0" if items[15] == 17 else "1",
+                                   r'assets/items/megatonHammer.png', Position(5, 1, tkinter.W))
+        self.create_or_update_item("Light Arrow", "0" if items[16] == 18 else "1",
+                                   r'assets/items/lightArrows.png', Position(5, 1, tkinter.W))
+        self.create_or_update_item("Nayru's Love", "0" if items[17] == 19 else "1",
+                                   r'assets/items/nayrusLove.png', Position(5, 1, tkinter.W))
 
     def create_or_update_dungeon(self, dungeon_name: str, binary: int, dungeon_keys: int = 0, image_path: str = ''):
         if dungeon_name in self.dungeons:
@@ -232,6 +262,8 @@ class Save:
 
     def create_or_update_item(self, item_name, obtained: str = "0",
                               image_path: str = "", position: Position = Position()):
+        print(item_name)
+        print(obtained)
         if item_name in self.items:
             pass
         else:
@@ -239,10 +271,14 @@ class Save:
 
         index = self.items.index(item_name)
 
-        if obtained == "0":
+        if obtained == "1":
             self.items[index].set_obtained(False)
         else:
             self.items[index].set_obtained(True)
+
+    def delete_item(self, item_name):
+        if item_name in self.items:
+            self.items.remove(item_name)
 
     def get_info(self):
         with open(self.path, "r") as saveFile:
