@@ -35,11 +35,15 @@ class App:
         for callback in self._bg_observers:
             callback(self._bg)
 
+    def bind_to(self, callback):
+        self._bg_observers.append(callback)
+
     def make_equipment_images(self, parent=equipment_parent):
         for equipment in self.save.equipments:
             if equipment.image_path != '':
                 # if not hasattr(equipment, 'label'):
                 equipment.label = Label(parent, image=equipment.image, bg=self.bg)
+                self.bind_to(equipment.update_background_color)
                 equipment.label.grid(row=equipment.position.row,
                                      column=equipment.position.column,
                                      sticky=equipment.position.sticky)
@@ -263,30 +267,6 @@ class App:
         else:
             print("File doesnt match the right extension")
 
-    def __init__(self, title: str, geometry: str):
-
-        self._bg_observers = []
-
-        self.window.title(title)
-        self.window.geometry(geometry)
-        self.window.minsize(480, 360)
-        self.window.iconbitmap("assets/other/enhancedDefence.ico")
-        self.window.config(background=self.bg)
-
-        self.window.after(10, self.update_save)
-
-        # variable image
-        # Image Menu Bar
-        self.openicon = PhotoImage(file="assets/other/folder.png")
-        self.openicon.image = self.openicon
-
-        self.infoicon = PhotoImage(file="assets/other/info.png")
-        self.infoicon.image = self.infoicon
-
-        self.exiticon = PhotoImage(file="assets/other/logout.png")
-        self.exiticon.image = self.exiticon
-
-
     def load_image_icon(self):
         # variable image
         # Image Menu Bar
@@ -311,23 +291,9 @@ class App:
         self.background_color_option_icon = PhotoImage(file=r"assets/other/backgroundColorOption.png")
         self.background_color_option_icon.image = self.background_color_option_icon
 
-    # noinspection PyTypeChecker
-    def get_info(self):
-        if self.save.path != "":
-            self.save.get_info()
-            self.make_equipment_images(parent=self.equipment_parent)
-
-    def get_path(self):
-        file_path = tkinter.filedialog.askopenfilename()
-        print("Path: " + file_path)
-        if ".sav" in file_path:
-            self.save.path = file_path
-            self.save.last_update = os.stat(file_path).st_mtime
-            self.get_info()
-        else:
-            print("File doesnt match the right extension")
-
     def __init__(self, title: str, geometry: str):
+
+        self._bg_observers = []
 
         self.window.title(title)
         self.window.geometry(geometry)
@@ -344,16 +310,19 @@ class App:
         menubar = Menu(self.window)
         filemenu = Menu(menubar, tearoff=0)
 
-        filemenu.add_command(label="Open", image=self.openicon, compound="left", command=self.get_path,accelerator="Ctrl+O")
+        filemenu.add_command(label="Open", image=self.openicon, compound="left", command=self.get_path,
+                             accelerator="Ctrl+O")
         filemenu.add_command(label="Get info", image=self.infoicon, compound="left", command=self.get_info)
 
         sub_menu_popout = Menu(filemenu, tearoff=0)
         filemenu.add_cascade(label="Popout", menu=sub_menu_popout, image=self.popout_icon, compound="left")
-        sub_menu_popout.add_command(label="Popout Equipment", image=self.popout_equipment_icon, compound="left", command=self.popout_equipment)
+        sub_menu_popout.add_command(label="Popout Equipment", image=self.popout_equipment_icon, compound="left",
+                                    command=self.popout_equipment)
 
         sub_menu_option = Menu(filemenu, tearoff=0)
         filemenu.add_cascade(label="Option", menu=sub_menu_option, image=self.option_icon, compound="left")
-        sub_menu_option.add_command(label="Background Color Option", image=self.background_color_option_icon, compound="left", command=self.pick_background_color)
+        sub_menu_option.add_command(label="Background Color Option", image=self.background_color_option_icon,
+                                    compound="left", command=self.pick_background_color)
 
         filemenu.add_separator()
 

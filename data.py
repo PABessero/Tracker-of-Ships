@@ -57,17 +57,23 @@ class ShowableItem(object):
     image_path: str = ''
     obtained: bool = False
     position: Position = Position()
+    # label: tkinter.Label
+
+    def update_background_color(self, bg):
+        if hasattr(self, 'label'):
+            self.label.configure(bg=bg)
 
     def set_obtained(self, obtained):
         self.obtained = obtained
-        self.image = ImageTk.PhotoImage(Image.open(self.image_path))
-        if not self.obtained:
-            colored = Image.open(self.image_path)
-            colored.load()
-            alpha = colored.split()[-1]
-            img_gray = colored.convert("L").convert("RGB")
-            img_gray.putalpha(alpha)
-            self.image = ImageTk.PhotoImage(img_gray)
+        if self.image_path != '':
+            self.image = ImageTk.PhotoImage(Image.open(self.image_path))
+            if not self.obtained:
+                colored = Image.open(self.image_path)
+                colored.load()
+                alpha = colored.split()[-1]
+                img_gray = colored.convert("L").convert("RGB")
+                img_gray.putalpha(alpha)
+                self.image = ImageTk.PhotoImage(img_gray)
 
     def __init__(self, name: str, image_path: str = ''):
         self.name = name
