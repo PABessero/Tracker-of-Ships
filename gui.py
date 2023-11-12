@@ -49,12 +49,13 @@ class App:
 
     def alertbox(self):
         if askyesno('Warning', 'Are you sure you want to do this?'):
-            quit(self)
+            self.window.destroy()
 
     def pick_background_color(self):
-        self.bg = askcolor()
-        self.window.configure(bg=self.bg[1])
+        self.bg = askcolor(self.bg, title="Test")[1] or "#0000a0"
+        self.window.configure(bg=self.bg)
         self.tmp_item_grid()
+        self.get_info()
 
     def tmp_item_grid(self):
 
@@ -95,9 +96,11 @@ class App:
         Label(self.window, image=self.lightArrows, bg=self.bg).grid(row=3, column=4, sticky=W)
         Label(self.window, image=self.naryusLove, bg=self.bg).grid(row=3, column=5, sticky=W)
 
+    # noinspection PyTypeChecker
     def get_info(self):
-        self.save.get_info()
-        self.make_equipment_images(parent=self.equipment_parent)
+        if self.save.path != "":
+            self.save.get_info()
+            self.make_equipment_images(parent=self.equipment_parent)
 
     def get_path(self):
         file_path = tkinter.filedialog.askopenfilename()
@@ -282,6 +285,8 @@ class App:
         filemenu.add_command(label="Test", compound="left", command=self.pick_background_color)
         menubar.add_cascade(label="File", menu=filemenu)
 
+        self.tmp_item_grid()
+
 
         # self.window.columnconfigure(0, weight=4)
         # self.window.columnconfigure(1, weight=1)
@@ -298,8 +303,6 @@ class Window(tkinter.Toplevel):
 
         self.geometry('300x100')
         self.title('Test Window')
-
-        self.protocol("WM_DELETE_WINDOW", )
 
 
 class EquipmentWindow(Window):
