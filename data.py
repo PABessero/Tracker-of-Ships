@@ -46,18 +46,17 @@ class Position:
     row: int = 0
     sticky = tkinter.W
 
-    def __init__(self, column: int = 0, row: int = 0, sticky = tkinter.W):
+    def __init__(self, column: int = 0, row: int = 0, sticky=tkinter.W):
         self.column = column
         self.row = row
         self.sticky = sticky
 
 
-class Equipment:
+class ShowableItem(object):
     name: str = ''
     image_path: str = ''
     obtained: bool = False
-    position: Position
-    # label: tkinter.Label
+    position: Position = Position()
 
     def set_obtained(self, obtained):
         self.obtained = obtained
@@ -69,9 +68,6 @@ class Equipment:
             img_gray = colored.convert("L").convert("RGB")
             img_gray.putalpha(alpha)
             self.image = ImageTk.PhotoImage(img_gray)
-
-        # if hasattr(self, 'label'):
-        #     self.label.
 
     def __init__(self, name: str, image_path: str = ''):
         self.name = name
@@ -87,6 +83,24 @@ class Equipment:
         return self.name == other
 
 
+class Equipment(ShowableItem):
+
+    def __init__(self, name: str, image_path: str = ''):
+        super().__init__(name, image_path)
+
+
+class Item(ShowableItem):
+
+    def __init__(self, name: str, image_path: str = '', position: Position = Position()):
+        super().__init__(name, image_path)
+        self.name = name
+        self.image_path = image_path
+        self.position = position
+
+        if self.image_path != '':
+            self.image = ImageTk.PhotoImage(Image.open(self.image_path))
+
+
 class Save:
     path: str
     doubleMagic: bool = False
@@ -95,6 +109,7 @@ class Save:
 
     dungeons: [Dungeon] = []
     equipments: [Equipment] = []
+    items: [Item] = []
 
     def make_data(self, data):
         self.doubleDefense = data['isDoubleDefenseAcquired']
@@ -195,8 +210,19 @@ class Save:
         else:
             self.equipments[index].set_obtained(True)
 
-    def create_or_update_item(self):
-        pass
+    def create_or_update_item(self, item_name, obtained: str = "0",
+                              image_path: str = "", position: Position = Position()):
+        if item_name in self.items:
+            pass
+        else:
+            self.items.append(Item(item_name, image_path=image_path, position=position))
+
+        index = self.items.index(item_name)
+
+        if obtained == "0":
+            self.items[index].set_obtained(False)
+        else:
+            self.items[index].set_obtained(True)
 
     def get_info(self):
         with open(self.path, "r") as saveFile:
