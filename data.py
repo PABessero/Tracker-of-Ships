@@ -220,17 +220,17 @@ class Save:
                                    r'assets/items/faroresWind.png', Position(5, 1, tkinter.W))
 
         self.create_or_update_item("Boomerang", "0" if items[12] == 14 else "1",
-                                   r'assets/items/boomerang.png', Position(5, 1, tkinter.W))
+                                   r'assets/items/boomerang.png', Position(0, 2, tkinter.W))
         self.create_or_update_item("Lens of Truth", "0" if items[13] == 15 else "1",
-                                   r'assets/items/lensOfTruth.png', Position(5, 1, tkinter.W))
+                                   r'assets/items/lensOfTruth.png', Position(1, 2, tkinter.W))
         self.create_or_update_item("Magic Bean", "0" if items[14] == 16 else "1",
-                                   r'assets/items/magicBeans.png', Position(5, 1, tkinter.W))
+                                   r'assets/items/magicBeans.png', Position(2, 2, tkinter.W))
         self.create_or_update_item("Megaton Hammer", "0" if items[15] == 17 else "1",
-                                   r'assets/items/megatonHammer.png', Position(5, 1, tkinter.W))
+                                   r'assets/items/megatonHammer.png', Position(3, 2, tkinter.W))
         self.create_or_update_item("Light Arrow", "0" if items[16] == 18 else "1",
-                                   r'assets/items/lightArrows.png', Position(5, 1, tkinter.W))
+                                   r'assets/items/lightArrows.png', Position(4, 2, tkinter.W))
         self.create_or_update_item("Nayru's Love", "0" if items[17] == 19 else "1",
-                                   r'assets/items/nayrusLove.png', Position(5, 1, tkinter.W))
+                                   r'assets/items/nayrusLove.png', Position(5, 2, tkinter.W))
 
     def create_or_update_dungeon(self, dungeon_name: str, binary: int, dungeon_keys: int = 0, image_path: str = ''):
         if dungeon_name in self.dungeons:
