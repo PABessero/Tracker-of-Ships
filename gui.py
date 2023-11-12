@@ -4,6 +4,7 @@ import tkinter
 from tkinter import *
 from tkinter import filedialog
 from tkinter.messagebox import *
+from tkinter.colorchooser import askcolor
 
 from data import Save
 
@@ -49,6 +50,50 @@ class App:
     def alertbox(self):
         if askyesno('Warning', 'Are you sure you want to do this?'):
             quit(self)
+
+    def pick_background_color(self):
+        self.bg = askcolor()
+        self.window.configure(bg=self.bg[1])
+        self.tmp_item_grid()
+
+    def tmp_item_grid(self):
+
+        # Placement Item Track
+        Label(self.window, image=self.worldMap, bg=self.bg).grid(row=0, rowspan=11, column=8, columnspan=10, sticky=SE)
+        self.window.columnconfigure(8, weight=10)
+
+        # Row = 0
+        Label(self.window, image=self.deku_stick, bg=self.bg).grid(row=0, column=0, sticky=W)
+        Label(self.window, image=self.deku_nut, bg=self.bg).grid(row=0, column=1, sticky=W)
+        Label(self.window, image=self.bombs, bg=self.bg).grid(row=0, column=2, sticky=W)
+        Label(self.window, image=self.bow, bg=self.bg).grid(row=0, column=3, sticky=W)
+        Label(self.window, image=self.fireArrow, bg=self.bg).grid(row=0, column=4, sticky=W)
+        Label(self.window, image=self.dinsFire, bg=self.bg).grid(row=0, column=5, sticky=W)
+
+        # Row = 1
+        Label(self.window, image=self.fairy_Slingshot, bg=self.bg).grid(row=1, column=0, sticky=W)
+        Label(self.window, image=self.fairy_Ocarina, bg=self.bg).grid(row=1, column=1, sticky=W)
+        Label(self.window, image=self.bombchus, bg=self.bg).grid(row=1, column=2, sticky=W)
+        Label(self.window, image=self.hookshot, bg=self.bg).grid(row=1, column=3, sticky=W)
+        Label(self.window, image=self.iceArrow, bg=self.bg).grid(row=1, column=4, sticky=W)
+        Label(self.window, image=self.faroresWind, bg=self.bg).grid(row=1, column=5, sticky=W)
+
+        # Row = 2
+        Label(self.window, image=self.boomerang, bg=self.bg).grid(row=2, column=0, sticky=W)
+        Label(self.window, image=self.lensOfTruth, bg=self.bg).grid(row=2, column=1, sticky=W)
+        Label(self.window, image=self.magicBeans, bg=self.bg).grid(row=2, column=2, sticky=W)
+        Label(self.window, image=self.megatonHammer, bg=self.bg).grid(row=2, column=3, sticky=W)
+        Label(self.window, image=self.lightArrows, bg=self.bg).grid(row=2, column=4, sticky=W)
+        Label(self.window, image=self.naryusLove, bg=self.bg).grid(row=2, column=5, sticky=W)
+
+        # Row = 3
+
+        Label(self.window, image=self.bottleEmpty, bg=self.bg).grid(row=3, column=0, sticky=W)
+        Label(self.window, image=self.bottleEmpty, bg=self.bg).grid(row=3, column=1, sticky=W)
+        Label(self.window, image=self.bottleEmpty, bg=self.bg).grid(row=3, column=2, sticky=W)
+        Label(self.window, image=self.bottleEmpty, bg=self.bg).grid(row=3, column=3, sticky=W)
+        Label(self.window, image=self.lightArrows, bg=self.bg).grid(row=3, column=4, sticky=W)
+        Label(self.window, image=self.naryusLove, bg=self.bg).grid(row=3, column=5, sticky=W)
 
     def get_info(self):
         self.save.get_info()
@@ -234,44 +279,9 @@ class App:
         filemenu.add_command(label="Popout Equipment", compound="left", command=self.popout_equipment)
         filemenu.add_separator()
         filemenu.add_command(label="Exit", image=self.exiticon, compound="left", command=self.alertbox)
+        filemenu.add_command(label="Test", compound="left", command=self.pick_background_color)
         menubar.add_cascade(label="File", menu=filemenu)
 
-        # Placement Item Track
-        Label(self.window, image=self.worldMap, bg=self.bg).grid(row=0, rowspan=11, column=8, columnspan=10, sticky=SE)
-        self.window.columnconfigure(8, weight=10)
-
-        # Row = 0
-        Label(self.window, image=self.deku_stick, bg=self.bg).grid(row=0, column=0, sticky=W)
-        Label(self.window, image=self.deku_nut, bg=self.bg).grid(row=0, column=1, sticky=W)
-        Label(self.window, image=self.bombs, bg=self.bg).grid(row=0, column=2, sticky=W)
-        Label(self.window, image=self.bow, bg=self.bg).grid(row=0, column=3, sticky=W)
-        Label(self.window, image=self.fireArrow, bg=self.bg).grid(row=0, column=4, sticky=W)
-        Label(self.window, image=self.dinsFire, bg=self.bg).grid(row=0, column=5, sticky=W)
-
-        # Row = 1
-        Label(self.window, image=self.fairy_Slingshot, bg=self.bg).grid(row=1, column=0, sticky=W)
-        Label(self.window, image=self.fairy_Ocarina, bg=self.bg).grid(row=1, column=1, sticky=W)
-        Label(self.window, image=self.bombchus, bg=self.bg).grid(row=1, column=2, sticky=W)
-        Label(self.window, image=self.hookshot, bg=self.bg).grid(row=1, column=3, sticky=W)
-        Label(self.window, image=self.iceArrow, bg=self.bg).grid(row=1, column=4, sticky=W)
-        Label(self.window, image=self.faroresWind, bg=self.bg).grid(row=1, column=5, sticky=W)
-
-        # Row = 2
-        Label(self.window, image=self.boomerang, bg=self.bg).grid(row=2, column=0, sticky=W)
-        Label(self.window, image=self.lensOfTruth, bg=self.bg).grid(row=2, column=1, sticky=W)
-        Label(self.window, image=self.magicBeans, bg=self.bg).grid(row=2, column=2, sticky=W)
-        Label(self.window, image=self.megatonHammer, bg=self.bg).grid(row=2, column=3, sticky=W)
-        Label(self.window, image=self.lightArrows, bg=self.bg).grid(row=2, column=4, sticky=W)
-        Label(self.window, image=self.naryusLove, bg=self.bg).grid(row=2, column=5, sticky=W)
-
-        # Row = 3
-
-        Label(self.window, image=self.bottleEmpty, bg=self.bg).grid(row=3, column=0, sticky=W)
-        Label(self.window, image=self.bottleEmpty, bg=self.bg).grid(row=3, column=1, sticky=W)
-        Label(self.window, image=self.bottleEmpty, bg=self.bg).grid(row=3, column=2, sticky=W)
-        Label(self.window, image=self.bottleEmpty, bg=self.bg).grid(row=3, column=3, sticky=W)
-        Label(self.window, image=self.lightArrows, bg=self.bg).grid(row=3, column=4, sticky=W)
-        Label(self.window, image=self.naryusLove, bg=self.bg).grid(row=3, column=5, sticky=W)
 
         # self.window.columnconfigure(0, weight=4)
         # self.window.columnconfigure(1, weight=1)
