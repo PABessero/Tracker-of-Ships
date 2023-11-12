@@ -102,10 +102,12 @@ class Item(ShowableItem):
 
 
 class Save:
-    path: str
+    path: str = ''
     doubleMagic: bool = False
     doubleDefense: bool = False
     magic: bool = False
+
+    last_update: int = 0
 
     dungeons: [Dungeon] = []
     equipments: [Equipment] = []
@@ -166,17 +168,17 @@ class Save:
                                         r'assets/items/equipHylianShield.png', Position(5, 4, tkinter.W))
         self.create_or_update_equipment('Mirror Shield', bin(equipment >> 6)[-1],
                                         r'assets/items/equipMirrorShield.png', Position(0, 5, tkinter.W))
-        self.create_or_update_equipment('Kokiri Tunic', bin(equipment >> 7)[-1],
+        self.create_or_update_equipment('Kokiri Tunic', bin(equipment >> 8)[-1],
                                         r'assets/items/equipKokiriTunic.png', Position(1, 5, tkinter.W))
-        self.create_or_update_equipment('Goron Tunic', bin(equipment >> 8)[-1],
+        self.create_or_update_equipment('Goron Tunic', bin(equipment >> 9)[-1],
                                         r'assets/items/equipGoronTunic.png', Position(2, 5, tkinter.W))
-        self.create_or_update_equipment('Zora Tunic', bin(equipment >> 9)[-1],
+        self.create_or_update_equipment('Zora Tunic', bin(equipment >> 10)[-1],
                                         r'assets/items/equipZoraTunic.png', Position(3, 5, tkinter.W))
-        self.create_or_update_equipment('Kokiri Boots', bin(equipment >> 10)[-1],
+        self.create_or_update_equipment('Kokiri Boots', bin(equipment >> 12)[-1],
                                         r'assets/items/equipKokiriBoots.png', Position(4, 5, tkinter.W))
-        self.create_or_update_equipment('Iron Boots', bin(equipment >> 11)[-1],
+        self.create_or_update_equipment('Iron Boots', bin(equipment >> 13)[-1],
                                         r'assets/items/equipIronBoots.png', Position(5, 5, tkinter.W))
-        self.create_or_update_equipment('Hover Boots', bin(equipment >> 12)[-1],
+        self.create_or_update_equipment('Hover Boots', bin(equipment >> 14)[-1],
                                         r'assets/items/equipHoverBoots.png', Position(0, 6, tkinter.W))
 
     def parse_inventory(self, items: [int]):

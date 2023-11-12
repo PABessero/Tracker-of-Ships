@@ -1,3 +1,5 @@
+import os
+import time
 import tkinter
 from tkinter import *
 from tkinter import filedialog
@@ -29,28 +31,41 @@ class Window:
                                      sticky=equipment.position.sticky)
                 # equipment.label
 
+    def update_save(self):
+        if self.save.path != '':
+            if self.save.last_update != os.stat(self.save.path).st_mtime:
+                time.sleep(0.1)
+                self.get_info()
+                self.save.last_update = os.stat(self.save.path).st_mtime
+        self.window.after(10, self.update_save)
+
+    def alertbox(self):
+        if askyesno('Warning', 'Are you sure you want to do this?'):
+            quit(self)
+
+    def get_info(self):
+        self.save.get_info()
+        self.make_equipment_images()
+
+    def get_path(self):
+        file_path = tkinter.filedialog.askopenfilename()
+        print("Path: " + file_path)
+        if ".sav" in file_path:
+            self.save.path = file_path
+            self.save.last_update = os.stat(file_path).st_mtime
+            self.get_info()
+        else:
+            print("File doesnt match the right extension")
+
     def __init__(self, title: str, geometry: str):
-        def get_path():
-            file_path = tkinter.filedialog.askopenfilename()
-            print("Path: " + file_path)
-            if ".sav" in file_path:
-                self.save.path = file_path
-            else:
-                print("File doesnt match the right extension")
-
-        def alertbox():
-            if askyesno('Warning', 'Are you sure you want to do this?'):
-                quit(self)
-
-        def get_info():
-            self.save.get_info()
-            self.make_equipment_images()
 
         self.window.title(title)
         self.window.geometry(geometry)
         self.window.minsize(480, 360)
         self.window.iconbitmap("assets/other/enhancedDefence.ico")
         self.window.config(background=self.bg)
+
+        self.window.after(10, self.update_save)
 
         # variable image
         # Image Menu Bar
@@ -206,10 +221,11 @@ class Window:
         menubar = Menu(self.window)
         filemenu = Menu(menubar, tearoff=0)
 
-        filemenu.add_command(label="Open", image=self.openicon, compound="left", command=get_path, accelerator="Ctrl+O")
-        filemenu.add_command(label="Get info", image=self.infoicon, compound="left", command=get_info)
+        filemenu.add_command(label="Open", image=self.openicon, compound="left", command=self.get_path,
+                             accelerator="Ctrl+O")
+        filemenu.add_command(label="Get info", image=self.infoicon, compound="left", command=self.get_info)
         filemenu.add_separator()
-        filemenu.add_command(label="Exit", image=self.exiticon, compound="left", command=alertbox)
+        filemenu.add_command(label="Exit", image=self.exiticon, compound="left", command=self.alertbox)
         menubar.add_cascade(label="File", menu=filemenu)
 
         # Placement Item Track
