@@ -47,7 +47,6 @@ class App:
                 equipment.label.grid(row=equipment.position.row,
                                      column=equipment.position.column,
                                      sticky=equipment.position.sticky)
-                # equipment.label
 
     def popout_equipment(self):
         window = EquipmentWindow(self)
@@ -70,7 +69,6 @@ class App:
         self.bg = askcolor(self.bg, title="Test")[1] or "#0000a0"
         self.window.configure(bg=self.bg)
         self.tmp_item_grid()
-        self.get_info()
 
     def tmp_item_grid(self):
 
