@@ -52,7 +52,7 @@ class App:
                                      sticky=show_item.position.sticky)
 
     def popout_equipment(self):
-        window = EquipmentWindow(self, "375x120")
+        window = EquipmentWindow(self, "320x110")
         self.equipment_parent = window
         self.get_info()
 
