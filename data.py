@@ -232,7 +232,7 @@ class Save:
         self.create_or_update_item("Nayru's Love", "0" if items[17] == 19 else "1",
                                    r'assets/items/nayrusLove.png', Position(5, 2, tkinter.W))
 
-        #Bouble For pour les 4 slots a bouteille
+        #Boucle For pour les 4 slots a bouteille
         slots = 18
         for column in range(4):
             self.delete_item("Bottle Empty" + str(slots))
