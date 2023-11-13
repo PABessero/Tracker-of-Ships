@@ -232,75 +232,75 @@ class Save:
         self.create_or_update_item("Nayru's Love", "0" if items[17] == 19 else "1",
                                    r'assets/items/nayrusLove.png', Position(5, 2, tkinter.W))
 
-        #Boucle For pour les 4 slots a bouteille
-        slots = 18
+        # Boucle For each of the 4 bottle slots
+        current_slot = 18
         for column in range(4):
-            self.delete_item("Bottle Empty" + str(slots))
-            self.delete_item("Red Potion" + str(slots))
-            self.delete_item("Green Potion" + str(slots))
-            self.delete_item("Blue Potion" + str(slots))
-            self.delete_item("Bottled Fairy" + str(slots))
-            self.delete_item("Fish" + str(slots))
-            self.delete_item("Bottle Lon Lon Milk" + str(slots))
-            self.delete_item("Ruto's Letter" + str(slots))
-            self.delete_item("Blue Fire" + str(slots))
-            self.delete_item("Bug" + str(slots))
-            self.delete_item("Big Poe" + str(slots))
-            self.delete_item("Bottle Lon Lon Milk Half" + str(slots))
-            self.delete_item("Poe" + str(slots))
-            if items[slots] == 20 or items[slots] == 255:
-                self.create_or_update_item("Bottle Empty" + str(slots), "0" if items[slots] == 20 else "1",
-                                        r'assets/items/bottleEmpty.png', Position(column, 3, tkinter.W))
+            self.delete_item("Bottle Empty" + str(current_slot))
+            self.delete_item("Red Potion" + str(current_slot))
+            self.delete_item("Green Potion" + str(current_slot))
+            self.delete_item("Blue Potion" + str(current_slot))
+            self.delete_item("Bottled Fairy" + str(current_slot))
+            self.delete_item("Fish" + str(current_slot))
+            self.delete_item("Bottle Lon Lon Milk" + str(current_slot))
+            self.delete_item("Ruto's Letter" + str(current_slot))
+            self.delete_item("Blue Fire" + str(current_slot))
+            self.delete_item("Bug" + str(current_slot))
+            self.delete_item("Big Poe" + str(current_slot))
+            self.delete_item("Bottle Lon Lon Milk Half" + str(current_slot))
+            self.delete_item("Poe" + str(current_slot))
+            if items[current_slot] == 20 or items[current_slot] == 255:
+                self.create_or_update_item("Bottle Empty" + str(current_slot), "0" if items[current_slot] == 20 else "1",
+                                           r'assets/items/bottleEmpty.png', Position(column, 3, tkinter.W))
 
-            elif items[slots] == 21:
-                self.create_or_update_item("Red Potion" + str(slots), "0" if items[slots] == 21 else "1",
+            elif items[current_slot] == 21:
+                self.create_or_update_item("Red Potion" + str(current_slot), "0" if items[current_slot] == 21 else "1",
                                            r'assets/items/bottleRedPotion.png', Position(column, 3, tkinter.W))
 
-            elif items[slots] == 22:
-                self.create_or_update_item("Green Potion" + str(slots), "0" if items[slots] == 22 else "1",
+            elif items[current_slot] == 22:
+                self.create_or_update_item("Green Potion" + str(current_slot), "0" if items[current_slot] == 22 else "1",
                                            r'assets/items/bottleGreenPotion.png', Position(column, 3, tkinter.W))
 
-            elif items[slots] == 23:
-                self.create_or_update_item("Blue Potion" + str(slots), "0" if items[slots] == 23 else "1",
+            elif items[current_slot] == 23:
+                self.create_or_update_item("Blue Potion" + str(current_slot), "0" if items[current_slot] == 23 else "1",
                                            r'assets/items/bottleBluePotion.png', Position(column, 3, tkinter.W))
 
-            elif items[slots] == 24:
-                self.create_or_update_item("Bottled Fairy" + str(slots), "0" if items[slots] == 24 else "1",
+            elif items[current_slot] == 24:
+                self.create_or_update_item("Bottled Fairy" + str(current_slot), "0" if items[current_slot] == 24 else "1",
                                            r'assets/items/bottleBottledFairy.png', Position(column, 3, tkinter.W))
 
-            elif items[slots] == 25:
-                self.create_or_update_item("Fish" + str(slots), "0" if items[slots] == 25 else "1",
+            elif items[current_slot] == 25:
+                self.create_or_update_item("Fish" + str(current_slot), "0" if items[current_slot] == 25 else "1",
                                            r'assets/items/bottleFish.png', Position(column, 3, tkinter.W))
 
-            elif items[slots] == 26:
-                self.create_or_update_item("Bottle Lon Lon Milk" + str(slots), "0" if items[slots] == 26 else "1",
+            elif items[current_slot] == 26:
+                self.create_or_update_item("Bottle Lon Lon Milk" + str(current_slot), "0" if items[current_slot] == 26 else "1",
                                            r'assets/items/bottleLonLonMilk.png', Position(column, 3, tkinter.W))
 
-            elif items[slots] == 27:
-                self.create_or_update_item("Ruto's Letter" + str(slots), "0" if items[slots] == 27 else "1",
+            elif items[current_slot] == 27:
+                self.create_or_update_item("Ruto's Letter" + str(current_slot), "0" if items[current_slot] == 27 else "1",
                                            r'assets/items/bottleLetter.png', Position(column, 3, tkinter.W))
 
-            elif items[slots] == 28:
-                self.create_or_update_item("Blue Fire" + str(slots), "0" if items[slots] == 28 else "1",
-                                           r'assets/items/bottleBlueFire.png', Position(0, 3, tkinter.W))
+            elif items[current_slot] == 28:
+                self.create_or_update_item("Blue Fire" + str(current_slot), "0" if items[current_slot] == 28 else "1",
+                                           r'assets/items/bottleBlueFire.png', Position(column, 3, tkinter.W))
 
-            elif items[slots] == 29:
-                self.create_or_update_item("Bug" + str(slots), "0" if items[slots] == 29 else "1",
+            elif items[current_slot] == 29:
+                self.create_or_update_item("Bug" + str(current_slot), "0" if items[current_slot] == 29 else "1",
                                            r'assets/items/bottleBug.png', Position(column, 3, tkinter.W))
 
-            elif items[slots] == 30:
-                self.create_or_update_item("Big Poe" + str(slots), "0" if items[slots] == 30 else "1",
+            elif items[current_slot] == 30:
+                self.create_or_update_item("Big Poe" + str(current_slot), "0" if items[current_slot] == 30 else "1",
                                            r'assets/items/bottleBigPoe.png', Position(column, 3, tkinter.W))
 
-            elif items[slots] == 31:
-                self.create_or_update_item("Bottle Lon Lon Milk Half" + str(slots), "0" if items[slots] == 31 else "1",
+            elif items[current_slot] == 31:
+                self.create_or_update_item("Bottle Lon Lon Milk Half" + str(current_slot), "0" if items[current_slot] == 31 else "1",
                                            r'assets/items/bottleLonLonMilkHalf.png', Position(column, 3, tkinter.W))
 
-            elif items[slots] == 32:
-                self.create_or_update_item("Poe" + str(slots), "0" if items[slots] == 32 else "1",
+            elif items[current_slot] == 32:
+                self.create_or_update_item("Poe" + str(current_slot), "0" if items[current_slot] == 32 else "1",
                                            r'assets/items/bottlePoe.png', Position(column, 3, tkinter.W))
 
-            slots = slots + 1
+            current_slot = current_slot + 1
 
     def create_or_update_dungeon(self, dungeon_name: str, binary: int, dungeon_keys: int = 0, image_path: str = ''):
         if dungeon_name in self.dungeons:
