@@ -235,7 +235,7 @@ class Save:
         # Boucle For each of the 4 bottle slots
         current_slot = 18
         for column in range(4):
-            self.delete_item("Bottle Empty" + str(current_slot))
+            self.delete_item("Empty Bottle" + str(current_slot))
             self.delete_item("Red Potion" + str(current_slot))
             self.delete_item("Green Potion" + str(current_slot))
             self.delete_item("Blue Potion" + str(current_slot))
@@ -249,7 +249,7 @@ class Save:
             self.delete_item("Bottle Lon Lon Milk Half" + str(current_slot))
             self.delete_item("Poe" + str(current_slot))
             if items[current_slot] == 20 or items[current_slot] == 255:
-                self.create_or_update_item("Bottle Empty" + str(current_slot), "0" if items[current_slot] == 20 else "1",
+                self.create_or_update_item("Empty Bottle" + str(current_slot), "0" if items[current_slot] == 20 else "1",
                                            r'assets/items/bottleEmpty.png', Position(column, 3, tkinter.W))
 
             elif items[current_slot] == 21:
