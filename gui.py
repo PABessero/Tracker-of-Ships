@@ -52,8 +52,11 @@ class App:
                                      sticky=show_item.position.sticky)
 
     def popout_equipment(self):
-        window = EquipmentWindow(self, "320x110")
-        self.equipment_parent = window
+        if self.equipment_parent == self.window:
+            window = EquipmentWindow(self, "320x110")
+            self.equipment_parent = window
+        else:
+            self.equipment_parent.destroy()
         self.get_info()
 
     def update_save(self):
