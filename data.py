@@ -330,7 +330,9 @@ class Save:
         self.get_zone(int(entrance))
 
     def create_zones(self):
-        self.create_or_update_zone("Zone Name", [1, 2, 5], "")
+        self.create_or_update_zone("Market", [177, 952, 674, 606, 465, 602, 461, 610, 956, 670, 469], "assets/maps/mapMK.png")
+        self.create_or_update_zone("Bazaar (Child)", [1324], "assets/maps/mapMK.png")
+        self.create_or_update_zone("Bazaar (Adult)", [183], "assets/maps/mapMK.png")
 
     def create_or_update_dungeon(self, dungeon_name: str, binary: int, dungeon_keys: int = 0, image_path: str = ''):
         if dungeon_name in self.dungeons:
