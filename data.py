@@ -93,6 +93,15 @@ class ShownItem(object):
 class Zone(object):
     entrance_ids: [int] = []
     zone_name: str = ''
+    image_path: str = ''
+
+    def __eq__(self, other: str):
+        return self.zone_name == other
+
+    def __init__(self, zone_name: str, entrances: [int] = [], image_path: str = ''):
+        self.zone_name = zone_name
+        self.entrance_ids = entrances
+        self.image_path = image_path
 
 
 class Equipment(ShownItem):
@@ -124,6 +133,7 @@ class Save:
     dungeons: [Dungeon] = []
     equipments: [Equipment] = []
     items: [Item] = []
+    zones: [Zone] = []
 
     def make_data(self, data):
         self.doubleDefense = data['isDoubleDefenseAcquired']
@@ -132,6 +142,7 @@ class Save:
         self.parse_dungeons(data['inventory']['dungeonItems'], data['inventory']['dungeonKeys'])
         self.parse_equipment(data['inventory']['equipment'])
         self.parse_inventory(data['inventory']['items'])
+        self.parse_entrance(data['entranceIndex'])
 
     def parse_dungeons(self, dungeons, dungeon_keys):
         self.create_or_update_dungeon('Deku Tree', dungeons[0], dungeon_keys[0])
@@ -254,7 +265,8 @@ class Save:
             self.delete_item("Bottle Lon Lon Milk Half_" + str(current_slot))
             self.delete_item("Poe_" + str(current_slot))
             if items[current_slot] == 20 or items[current_slot] == 255:
-                self.create_or_update_item("Empty Bottle_" + str(current_slot), "0" if items[current_slot] == 20 else "1",
+                self.create_or_update_item("Empty Bottle_" + str(current_slot),
+                                           "0" if items[current_slot] == 20 else "1",
                                            r'assets/items/bottleEmpty.png', Position(column, 3, tkinter.W))
 
             elif items[current_slot] == 21:
@@ -262,15 +274,18 @@ class Save:
                                            r'assets/items/bottleRedPotion.png', Position(column, 3, tkinter.W))
 
             elif items[current_slot] == 22:
-                self.create_or_update_item("Green Potion_" + str(current_slot), "0" if items[current_slot] == 22 else "1",
+                self.create_or_update_item("Green Potion_" + str(current_slot),
+                                           "0" if items[current_slot] == 22 else "1",
                                            r'assets/items/bottleGreenPotion.png', Position(column, 3, tkinter.W))
 
             elif items[current_slot] == 23:
-                self.create_or_update_item("Blue Potion_" + str(current_slot), "0" if items[current_slot] == 23 else "1",
+                self.create_or_update_item("Blue Potion_" + str(current_slot),
+                                           "0" if items[current_slot] == 23 else "1",
                                            r'assets/items/bottleBluePotion.png', Position(column, 3, tkinter.W))
 
             elif items[current_slot] == 24:
-                self.create_or_update_item("Bottled Fairy_" + str(current_slot), "0" if items[current_slot] == 24 else "1",
+                self.create_or_update_item("Bottled Fairy_" + str(current_slot),
+                                           "0" if items[current_slot] == 24 else "1",
                                            r'assets/items/bottleBottledFairy.png', Position(column, 3, tkinter.W))
 
             elif items[current_slot] == 25:
@@ -278,11 +293,13 @@ class Save:
                                            r'assets/items/bottleFish.png', Position(column, 3, tkinter.W))
 
             elif items[current_slot] == 26:
-                self.create_or_update_item("Bottle Lon Lon Milk_" + str(current_slot), "0" if items[current_slot] == 26 else "1",
+                self.create_or_update_item("Bottle Lon Lon Milk_" + str(current_slot),
+                                           "0" if items[current_slot] == 26 else "1",
                                            r'assets/items/bottleLonLonMilk.png', Position(column, 3, tkinter.W))
 
             elif items[current_slot] == 27:
-                self.create_or_update_item("Ruto's Letter_" + str(current_slot), "0" if items[current_slot] == 27 else "1",
+                self.create_or_update_item("Ruto's Letter_" + str(current_slot),
+                                           "0" if items[current_slot] == 27 else "1",
                                            r'assets/items/bottleLetter.png', Position(column, 3, tkinter.W))
 
             elif items[current_slot] == 28:
@@ -298,7 +315,8 @@ class Save:
                                            r'assets/items/bottleBigPoe.png', Position(column, 3, tkinter.W))
 
             elif items[current_slot] == 31:
-                self.create_or_update_item("Bottle Lon Lon Milk Half_" + str(current_slot), "0" if items[current_slot] == 31 else "1",
+                self.create_or_update_item("Bottle Lon Lon Milk Half_" + str(current_slot),
+                                           "0" if items[current_slot] == 31 else "1",
                                            r'assets/items/bottleLonLonMilkHalf.png', Position(column, 3, tkinter.W))
 
             elif items[current_slot] == 32:
@@ -306,6 +324,13 @@ class Save:
                                            r'assets/items/bottlePoe.png', Position(column, 3, tkinter.W))
 
             current_slot = current_slot + 1
+
+    def parse_entrance(self, entrance):
+        self.create_zones()
+        self.get_zone(int(entrance))
+
+    def create_zones(self):
+        self.create_or_update_zone("Zone Name", [1, 2, 5], "")
 
     def create_or_update_dungeon(self, dungeon_name: str, binary: int, dungeon_keys: int = 0, image_path: str = ''):
         if dungeon_name in self.dungeons:
@@ -337,8 +362,6 @@ class Save:
 
     def create_or_update_item(self, item_name, obtained: str = "0",
                               image_path: str = "", position: Position = Position()):
-        print(item_name)
-        print(obtained)
         if item_name in self.items:
             pass
         else:
@@ -350,6 +373,17 @@ class Save:
             self.items[index].set_obtained(False)
         else:
             self.items[index].set_obtained(True)
+
+    def create_or_update_zone(self, zone_name: str, entrances: [int] = [], image_path: str = ""):
+        if zone_name in self.zones:
+            return
+        self.zones.append(Zone(zone_name, entrances=entrances, image_path=image_path))
+
+    def get_zone(self, current_entrance: int):
+        for zone in self.zones:
+            if current_entrance in zone.entrance_ids:
+                print(zone.zone_name)
+                return
 
     def delete_item(self, item_name):
         if item_name in self.items:
