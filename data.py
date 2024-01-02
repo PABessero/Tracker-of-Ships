@@ -130,6 +130,8 @@ class Save:
 
     last_update: int = 0
 
+    current_zone: Zone = None
+
     dungeons: [Dungeon] = []
     equipments: [Equipment] = []
     items: [Item] = []
@@ -327,7 +329,7 @@ class Save:
 
     def parse_entrance(self, entrance):
         self.create_zones()
-        self.get_zone(int(entrance))
+        self.current_zone = self.get_zone(int(entrance)) or None
 
     def create_zones(self):
         self.create_or_update_zone("Market", [177, 952, 674, 606, 465, 602, 461, 610, 956, 670, 469], "assets/maps/mapMK.png")
@@ -385,7 +387,8 @@ class Save:
         for zone in self.zones:
             if current_entrance in zone.entrance_ids:
                 print(zone.zone_name)
-                return
+                print(zone.image_path)
+                return zone
 
     def delete_item(self, item_name):
         if item_name in self.items:

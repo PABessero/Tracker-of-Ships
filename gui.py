@@ -80,6 +80,7 @@ class App:
 
         # Placement Item Track
         Label(self.window, image=self.worldMap, bg=self.bg).grid(row=0, rowspan=11, column=8, columnspan=10, sticky=SE)
+        Label(self.window, image=self.miniMap, bg=self.bg).grid(row=12, rowspan=3, column=8, columnspan=5, sticky=SE)
         self.window.columnconfigure(8, weight=10)
 
     def load_image_icon(self):
@@ -110,6 +111,9 @@ class App:
         self.worldMap = PhotoImage(file=r"assets/maps/worldMap.png")
         self.worldMap.image = self.worldMap
 
+        self.miniMap = PhotoImage(file="assets/maps/mapGF.png")
+        self.miniMap.image = self.miniMap
+
     # noinspection PyTypeChecker
 
     def get_info(self):
@@ -117,6 +121,12 @@ class App:
             self.save.get_info()
             self.make_images(self.equipment_parent, self.save.equipments)
             self.make_images(self.equipment_parent, self.save.items)
+            if self.save.current_zone is not None:
+                print("Test")
+                self.miniMap = PhotoImage(file=self.save.current_zone.image_path)
+                self.miniMap.image = self.miniMap
+                Label(self.window, image=self.miniMap, bg=self.bg).grid(row=12, rowspan=3, column=8, columnspan=5,
+                                                                        sticky=SE)
 
     def get_path(self):
         file_path = tkinter.filedialog.askopenfilename()
@@ -187,8 +197,8 @@ class Window(tkinter.Toplevel):
 
 
 class EquipmentWindow(Window):
-    def __init__(self, parent, geometry = "300x100", **kwargs):
-        super().__init__(parent, "Equipment Window", geometry, **kwargs)
+    def __init__(self, parent, geometry="300x100"):
+        super().__init__(parent, "Equipment Window", geometry)
         self.attributes("-topmost", True)
         self.configure(bg=parent.bg)
 
